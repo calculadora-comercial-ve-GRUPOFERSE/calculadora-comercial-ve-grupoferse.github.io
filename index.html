@@ -51,7 +51,7 @@
             display: flex;
             flex-direction: column;
             position: relative;
-            padding-bottom: 40px;
+            padding-bottom: 20px;
         }
 
         .fixed-header {
@@ -78,6 +78,31 @@
             display: flex;
             align-items: center;
             gap: 6px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-info-about {
+            background: #004085;
+            color: #ffffff;
+            border: 1px solid #4a90e2;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s;
+        }
+
+        .btn-info-about:hover {
+            background: #0f4c81;
         }
 
         .nav-tabs {
@@ -254,6 +279,123 @@
             text-align: center;
         }
 
+        /* FIRMA DE CONFIANZA AL FINAL */
+        .trust-signature {
+            margin-top: 24px;
+            margin-bottom: 10px;
+            text-align: center;
+            padding: 12px 10px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .trust-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #4a90e2;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .trust-subtitle {
+            font-size: 10px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        /* VISTA DE INFORMACIÓN Y CONTACTO (FONDO BLANCO) */
+        #about-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            color: #1c1e21;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 24px 16px;
+            box-sizing: border-box;
+        }
+
+        .about-content {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .about-logo {
+            width: 180px;
+            height: auto;
+            margin-bottom: 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .about-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f4c81;
+            margin-bottom: 4px;
+        }
+
+        .about-subtitle {
+            font-size: 13px;
+            color: #555555;
+            margin-bottom: 20px;
+        }
+
+        .contact-box {
+            width: 100%;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            color: #ffffff;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .contact-link:active {
+            transform: scale(0.98);
+        }
+
+        .link-wa { background: #25d366; }
+        .link-channel { background: #0088cc; }
+        .link-email { background: #ea4335; }
+        .link-fb { background: #1877f2; }
+
+        .btn-back-calc {
+            background: #0f4c81;
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(15,76,129,0.3);
+            margin-top: 10px;
+        }
+
         #update-banner {
             display: none;
             position: fixed;
@@ -292,7 +434,10 @@
                 <span>🧮</span>
                 <span>Calculadora VE</span>
             </div>
-            <span style="font-size: 11px; background: #004085; padding: 2px 8px; border-radius: 10px;">v2.5</span>
+            <div class="header-actions">
+                <button class="btn-info-about" onclick="openAbout()">ℹ️ Contacto</button>
+                <span style="font-size: 11px; background: #004085; padding: 2px 8px; border-radius: 10px;">v2.5</span>
+            </div>
         </div>
 
         <div class="nav-tabs">
@@ -370,7 +515,7 @@
                     </div>
                 </div>
 
-                <!-- NUEVA OPCIÓN: TASA MANUAL EXCLUSIVA PARA IVA Y RETENCIÓN -->
+                <!-- TASA MANUAL EXCLUSIVA PARA IVA Y RETENCIÓN -->
                 <div class="form-group" style="margin-top: 8px; background: rgba(255,255,255,0.03); padding: 10px; border-radius: 8px; border: 1px dashed var(--border);">
                     <label style="color: #4a90e2; font-weight: 700;">⚙️ Tasa Manual para IVA y Retención (Opcional)</label>
                     <select id="iva-rate-mode" onchange="toggleIvaRateMode()" style="margin-top: 4px; margin-bottom: 8px;">
@@ -519,6 +664,38 @@
                  (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
+
+        <!-- FIRMA DE CONFIANZA INSTITUCIONAL -->
+        <div class="trust-signature">
+            <div class="trust-title">Desarrollado por Grupo FERSE</div>
+            <div class="trust-subtitle">11 años de experiencia brindando soluciones comerciales.</div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN ACERCA DE / CONTACTO (DESPLEGABLE CON FONDO BLANCO) -->
+    <div id="about-screen">
+        <div class="about-content">
+            <img src="./logogrupoferse.png" alt="Logo Grupo FERSE" class="about-logo">
+            <h2 class="about-title">Desarrollado por Grupo FERSE</h2>
+            <p class="about-subtitle">11 años de experiencia brindando soluciones comerciales • Transformación Social en proceso.</p>
+
+            <div class="contact-box">
+                <a href="https://wa.me/584163791724" target="_blank" class="contact-link link-wa">
+                    <span>💬</span> Contacto Directo por WhatsApp
+                </a>
+                <a href="https://whatsapp.com/channel/0029VbDRbIEFSAtBaheVbx2J" target="_blank" class="contact-link link-channel">
+                    <span>📢</span> Canal Oficial de WhatsApp
+                </a>
+                <a href="mailto:grupofersevenezuela@gmail.com" class="contact-link link-email">
+                    <span>✉️</span> Correo Electrónico
+                </a>
+                <a href="https://www.facebook.com/grupoferse/" target="_blank" class="contact-link link-fb">
+                    <span>📘</span> Página Oficial de Facebook
+                </a>
+            </div>
+
+            <button class="btn-back-calc" onclick="closeAbout()">← Volver a la Calculadora</button>
+        </div>
     </div>
 
     <div id="update-banner">
@@ -530,6 +707,14 @@
 <script>
     let bcvRates = { usd: 875.65, eur: 980.61 };
     let newWorker = null;
+
+    function openAbout() {
+        document.getElementById('about-screen').style.display = 'block';
+    }
+
+    function closeAbout() {
+        document.getElementById('about-screen').style.display = 'none';
+    }
 
     function switchTab(tabName) {
         document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
@@ -684,7 +869,6 @@
             rowIva.style.display = 'flex';
             rowRetention.style.display = 'flex';
 
-            // Si se usa tasa de IVA diferente, mostrar indicador de tasa secundaria
             let ivaMode = document.getElementById('iva-rate-mode').value;
             if (ivaMode === 'custom') {
                 rowIvaRate.style.display = 'flex';
@@ -693,7 +877,6 @@
                 rowIvaRate.style.display = 'none';
             }
 
-            // Cálculo del IVA y Retención usando la tasa de IVA independiente
             let ivaUsd = netUsd * 0.16;
             let ivaBs = ivaUsd * ivaRate;
             document.getElementById('res-iva').innerText = `${formatBs(ivaBs)} (${formatUsd(ivaUsd)})`;
@@ -706,7 +889,6 @@
             let applyIgtf = document.getElementById('apply-igtf').value;
             let igtfBs = 0;
             if (applyIgtf === 'si') {
-                // IGTF se calcula sobre el total en bolívares equivalente
                 igtfBs = (netBs + ivaBs) * 0.03;
                 document.getElementById('res-igtf').innerText = formatBs(igtfBs);
                 rowIgtf.style.display = 'flex';

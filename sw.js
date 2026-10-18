@@ -1,10 +1,11 @@
-const CACHE_NAME = 'calcve-v2.5';
+const CACHE_NAME = 'calcve-v2.6';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './screenshot1.png',
-  './icon.png'
+  './icon.png',
+  './logogrupoferse.png'
 ];
 
 // Instalación y precaché
