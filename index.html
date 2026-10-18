@@ -519,7 +519,7 @@
                 <div class="form-group" style="margin-top: 8px; background: rgba(255,255,255,0.03); padding: 10px; border-radius: 8px; border: 1px dashed var(--border);">
                     <label style="color: #4a90e2; font-weight: 700;">⚙️ Tasa Manual para IVA y Retención (Opcional)</label>
                     <select id="iva-rate-mode" onchange="toggleIvaRateMode()" style="margin-top: 4px; margin-bottom: 8px;">
-                        <option value="same">Usar misma tasa de la Base Imponible</option>
+                        <option value="bcv">Usar misma tasa oficial Oficial BCV (Automática)</option>
                         <option value="custom">Definir Tasa Manual distinta para IVA / Retención</option>
                     </select>
                     <div id="iva-manual-group" style="display: none;">
@@ -823,7 +823,10 @@
         if (docType === 'fiscal') {
             let ivaMode = document.getElementById('iva-rate-mode').value;
             if (ivaMode === 'custom') {
-                return parseFloat(document.getElementById('manual-iva-rate').value) || getBaseRate();
+                return parseFloat(document.getElementById('manual-iva-rate').value) || bcvRates.usd;
+            } else {
+                // Si elige "bcv", utiliza automáticamente la tasa BCV oficial USD
+                return bcvRates.usd;
             }
         }
         return getBaseRate();
@@ -870,7 +873,7 @@
             rowRetention.style.display = 'flex';
 
             let ivaMode = document.getElementById('iva-rate-mode').value;
-            if (ivaMode === 'custom') {
+            if (ivaMode === 'custom' || baseRate !== ivaRate) {
                 rowIvaRate.style.display = 'flex';
                 document.getElementById('res-iva-rate').innerText = formatBs(ivaRate);
             } else {
