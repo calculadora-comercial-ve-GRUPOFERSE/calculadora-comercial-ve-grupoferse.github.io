@@ -3,434 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
-    <title>Calculadora Comercial VE</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://*.google-analytics.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://ve.dolarapi.com https://*.google-analytics.com https://*.googlesyndication.com https://*.doubleclick.net; frame-src https://googleads.g.doubleclick.net https://*.googlesyndication.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <title>Calculadora Comercial VE · Grupo FERSE</title>
+    <meta name="description" content="Calculadora comercial y fiscal con tasa BCV, IVA, IGTF y empaques. Funciona offline. Grupo FERSE.">
     <meta name="theme-color" content="#0f4c81">
-    <link rel="manifest" href="./manifest.json">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Script Oficial de Google AdSense -->
+    <link rel="manifest" href="https://calculadora-comercial-ve-grupoferse.github.io/manifest.json">
+    <link rel="icon" href="https://calculadora-comercial-ve-grupoferse.github.io/icon.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1456502299841137" crossorigin="anonymous"></script>
-
-    <style>
-        :root {
-            --primary: #0f4c81;
-            --primary-dark: #0a3357;
-            --accent: #2e7d32;
-            --bg: #121212;
-            --surface: #1e1e1e;
-            --surface-card: #252525;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0b0;
-            --border: #333333;
-            --discount-color: #e53935;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        html, body {
-            background-color: var(--bg);
-            color: var(--text-primary);
-            min-height: 100vh;
-            width: 100%;
-            overflow-x: hidden;
-            overflow-y: auto;
-            margin: 0;
-            padding: 0;
-        }
-
-        .phone-container {
-            min-height: 100vh;
-            width: 100%;
-            background: var(--surface);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            padding-bottom: 20px;
-        }
-
-        .fixed-header {
-            flex-shrink: 0;
-            background: var(--surface-card);
-            z-index: 10;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-            position: sticky;
-            top: 0;
-        }
-
-        .app-bar {
-            padding: 10px 14px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .app-title {
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-info-about {
-            background: #004085;
-            color: #ffffff;
-            border: 1px solid #4a90e2;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            transition: all 0.2s;
-        }
-
-        .btn-info-about:hover {
-            background: #0f4c81;
-        }
-
-        .nav-tabs {
-            display: flex;
-            background: var(--surface-card);
-            padding: 6px 10px;
-            gap: 6px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .tab-btn {
-            flex: 1;
-            background: #121212;
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            padding: 10px 6px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            text-align: center;
-            transition: all 0.2s;
-        }
-
-        .tab-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: #4a90e2;
-            font-weight: 700;
-        }
-
-        .app-content {
-            padding: 12px;
-            flex: 1;
-        }
-
-        .tab-pane {
-            display: none;
-        }
-
-        .tab-pane.active {
-            display: block;
-        }
-
-        .rate-card {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            border-radius: 14px;
-            padding: 12px 14px;
-            margin-bottom: 14px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .rate-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .rate-label {
-            font-size: 10px;
-            color: #d1e3ff;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .rate-val {
-            font-size: 15px;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .btn-sync {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .form-group {
-            margin-bottom: 12px;
-        }
-
-        label {
-            display: block;
-            font-size: 11px;
-            color: var(--text-secondary);
-            margin-bottom: 4px;
-            font-weight: 500;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 10px 12px;
-            background: var(--surface-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-size: 14px;
-            outline: none;
-        }
-
-        .row {
-            display: flex;
-            gap: 10px;
-        }
-
-        .row .form-group {
-            flex: 1;
-        }
-
-        .results-card {
-            background: var(--surface-card);
-            border-radius: 14px;
-            padding: 14px;
-            margin-top: 12px;
-            border: 1px solid var(--border);
-        }
-
-        .results-title {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            padding-bottom: 4px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .result-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            margin-bottom: 6px;
-            color: var(--text-secondary);
-        }
-
-        .result-row.highlight {
-            color: var(--text-primary);
-            font-weight: 500;
-        }
-
-        .result-row.discount {
-            color: var(--discount-color);
-            font-weight: 500;
-        }
-
-        .result-row.total-bs {
-            margin-top: 8px;
-            padding-top: 8px;
-            border-top: 1px dashed var(--border);
-            font-size: 15px;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .result-row.total-usd {
-            font-size: 15px;
-            font-weight: 700;
-            color: #4caf50;
-        }
-
-        .ad-container {
-            margin-top: 14px;
-            text-align: center;
-        }
-
-        /* FIRMA DE CONFIANZA AL FINAL */
-        .trust-signature {
-            margin-top: 24px;
-            margin-bottom: 10px;
-            text-align: center;
-            padding: 12px 10px;
-            border-top: 1px dashed rgba(255, 255, 255, 0.1);
-        }
-
-        .trust-title {
-            font-size: 11px;
-            font-weight: 700;
-            color: #4a90e2;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .trust-subtitle {
-            font-size: 10px;
-            color: var(--text-secondary);
-            margin-top: 2px;
-        }
-
-        /* VISTA DE INFORMACIÓN Y CONTACTO (FONDO BLANCO) */
-        #about-screen {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #ffffff;
-            color: #1c1e21;
-            z-index: 1000;
-            overflow-y: auto;
-            padding: 24px 16px;
-            box-sizing: border-box;
-        }
-
-        .about-content {
-            max-width: 500px;
-            margin: 0 auto;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .about-logo {
-            width: 180px;
-            height: auto;
-            margin-bottom: 16px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .about-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #0f4c81;
-            margin-bottom: 4px;
-        }
-
-        .about-subtitle {
-            font-size: 13px;
-            color: #555555;
-            margin-bottom: 20px;
-        }
-
-        .contact-box {
-            width: 100%;
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 14px;
-            padding: 16px;
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 12px 16px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 500;
-            text-decoration: none;
-            color: #ffffff;
-            transition: transform 0.2s, opacity 0.2s;
-        }
-
-        .contact-link:active {
-            transform: scale(0.98);
-        }
-
-        .link-wa { background: #25d366; }
-        .link-channel { background: #0088cc; }
-        .link-email { background: #ea4335; }
-        .link-fb { background: #1877f2; }
-
-        .btn-back-calc {
-            background: #0f4c81;
-            color: #ffffff;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 24px;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(15,76,129,0.3);
-            margin-top: 10px;
-        }
-
-        #update-banner {
-            display: none;
-            position: fixed;
-            bottom: 16px;
-            left: 16px;
-            right: 16px;
-            background: #0f4c81;
-            color: white;
-            padding: 12px 14px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.8);
-            z-index: 100;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid #4a90e2;
-        }
-
-        #update-banner button {
-            background: #4caf50;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-    </style>
-    <!-- Google tag (gtag.js) - Google Analytics 4 -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HHYM4C327L"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-HHYM4C327L');
     </script>
 </head>
@@ -440,37 +30,65 @@
     <div class="fixed-header">
         <div class="app-bar">
             <div class="app-title">
-                <span>🧮</span>
-                <span>Calculadora VE</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                <span>Calculadora Comercial VE</span>
             </div>
             <div class="header-actions">
-                <button class="btn-info-about" onclick="openAbout()">ℹ️ Contacto</button>
-                <span style="font-size: 11px; background: #004085; padding: 2px 8px; border-radius: 10px;">v2.6</span>
+                <button class="btn-icon" id="btn-theme" onclick="alternarTema()" aria-label="Cambiar tema claro/oscuro" title="Cambiar tema">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                </button>
+                <button class="btn-icon" id="btn-history" onclick="abrirHistorial()" aria-label="Ver historial de cálculos" title="Historial">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </button>
+                <button class="btn-info-about" onclick="openAbout()">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    Contacto
+                </button>
+                <span class="version-badge">v3.0</span>
             </div>
         </div>
 
-        <div class="nav-tabs">
-            <button class="tab-btn active" id="btn-tab-fiscal" onclick="switchTab('fiscal')">💱 Calc. Fiscal</button>
-            <button class="tab-btn" id="btn-tab-empaque" onclick="switchTab('empaque')">📦 Empaques y Ganancias</button>
+        <div id="offline-banner" class="offline-banner" role="status" aria-live="polite" style="display:none;">
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><path d="M1 1l22 22"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.58 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+            <span>Modo Offline — usando última tasa guardada</span>
+        </div>
+
+        <div class="nav-tabs" role="tablist">
+            <button class="tab-btn active" id="btn-tab-fiscal" role="tab" aria-selected="true" onclick="switchTab('fiscal')">
+                <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+                Calc. Fiscal
+            </button>
+            <button class="tab-btn" id="btn-tab-empaque" role="tab" aria-selected="false" onclick="switchTab('empaque')">
+                <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                Empaques y Ganancias
+            </button>
         </div>
     </div>
 
-    <div class="app-content">
+    <main class="app-content">
         <!-- TARJETA DE TASA BCV -->
-        <div class="rate-card">
+        <section class="rate-card" aria-label="Tasa oficial BCV">
             <div class="rate-info">
-                <span class="rate-label">Oficial BCV (Automática)</span>
-                <span class="rate-val" id="rate-usd-display">USD: Sincronizando...</span>
-                <span class="rate-val" id="rate-eur-display" style="font-size: 12px; opacity: 0.9;">EUR: Sincronizando...</span>
+                <span class="rate-label">Tasa Oficial BCV</span>
+                <span class="rate-val" id="rate-usd-display">USD: Bs. —</span>
+                <span class="rate-val secondary" id="rate-eur-display">EUR: Bs. —</span>
+                <span class="rate-updated" id="rate-updated">Sin sincronizar</span>
             </div>
-            <button class="btn-sync" onclick="fetchBCV()">
-                <span>🔄</span> Sincronizar
+            <button class="btn-sync" id="btn-sync" onclick="fetchBCV()" aria-label="Sincronizar tasa BCV">
+                <span class="spinner" id="sync-spinner" aria-hidden="true"></span>
+                <svg id="sync-icon" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                <span id="sync-text">Sincronizar</span>
             </button>
-        </div>
+        </section>
 
-        <!-- TASA PARA LA BASE IMPONIBLE -->
+        <div id="sync-error" class="error-box" role="alert" style="display:none;"></div>
+
+        <!-- TASA BASE -->
         <div class="form-group">
-            <label>Tipo de Tasa para Base Imponible</label>
+            <label for="rate-source">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                Tipo de Tasa para Base Imponible
+            </label>
             <select id="rate-source" onchange="toggleRateSource()">
                 <option value="bcv-usd">BCV Dólar Oficial (Automática)</option>
                 <option value="bcv-eur">BCV Euro Oficial (Automática)</option>
@@ -479,36 +97,35 @@
         </div>
 
         <div class="form-group" id="manual-rate-group" style="display: none;">
-            <label>Tasa Manual Base Imponible (Bs/$)</label>
-            <input type="number" id="manual-rate" placeholder="Ejemplo: 875.65" step="0.01" oninput="calcularTodo()">
+            <label for="manual-rate">Tasa Manual Base Imponible (Bs/$)</label>
+            <input type="number" id="manual-rate" placeholder="Ej: 875.65" step="0.01" min="0.01" oninput="calcularTodo()" inputmode="decimal">
         </div>
 
         <!-- PESTAÑA 1: CALCULADORA FISCAL -->
-        <div class="tab-pane active" id="pane-fiscal">
+        <div class="tab-pane active" id="pane-fiscal" role="tabpanel">
             <div class="row">
                 <div class="form-group">
-                    <label>Monto Base ($ USD)</label>
-                    <input type="number" id="amount-usd" placeholder="0.00" step="0.01" oninput="calcularTodo()">
+                    <label for="amount-usd">Monto Base ($ USD)</label>
+                    <input type="number" id="amount-usd" placeholder="0.00" step="0.01" min="0" oninput="calcularTodo()" inputmode="decimal">
                 </div>
                 <div class="form-group">
-                    <label>Descuento (%)</label>
-                    <input type="number" id="discount-pct" placeholder="0" min="0" max="100" step="1" oninput="calcularTodo()">
+                    <label for="discount-pct">Descuento (%)</label>
+                    <input type="number" id="discount-pct" placeholder="0" min="0" max="100" step="1" oninput="calcularTodo()" inputmode="decimal">
                 </div>
             </div>
 
             <div class="form-group">
-                <label>Modalidad de Documento</label>
+                <label for="doc-type">Modalidad de Documento</label>
                 <select id="doc-type" onchange="toggleDocType()">
                     <option value="proforma">Proforma (Sin IVA / Presupuesto)</option>
                     <option value="fiscal">Factura Fiscal (SENIAT)</option>
                 </select>
             </div>
 
-            <!-- OPCIONES ESPECÍFICAS DE FACTURA FISCAL -->
             <div id="fiscal-options" style="display: none;">
                 <div class="row">
                     <div class="form-group">
-                        <label>Retención IVA SENIAT</label>
+                        <label for="retention-iva">Retención IVA SENIAT</label>
                         <select id="retention-iva" onchange="calcularTodo()">
                             <option value="0">0% (Sin Retención)</option>
                             <option value="75">75% (Contribuyente Especial)</option>
@@ -516,7 +133,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Aplica IGTF Divisa</label>
+                        <label for="apply-igtf">Aplica IGTF Divisa</label>
                         <select id="apply-igtf" onchange="calcularTodo()">
                             <option value="no">No (Pago Transferencia Bs)</option>
                             <option value="si">Sí (3% Pago Divisa Efectivo)</option>
@@ -524,82 +141,77 @@
                     </div>
                 </div>
 
-                <!-- TASA MANUAL EXCLUSIVA PARA IVA Y RETENCIÓN -->
-                <div class="form-group" style="margin-top: 8px; background: rgba(255,255,255,0.03); padding: 10px; border-radius: 8px; border: 1px dashed var(--border);">
-                    <label style="color: #4a90e2; font-weight: 700;">⚙️ Tasa Manual para IVA y Retención (Opcional)</label>
-                    <select id="iva-rate-mode" onchange="toggleIvaRateMode()" style="margin-top: 4px; margin-bottom: 8px;">
-                        <option value="bcv">Usar misma tasa oficial Oficial BCV (Automática)</option>
+                <div class="form-group highlight-box">
+                    <label for="iva-pct" class="label-info">Alícuota IVA</label>
+                    <select id="iva-pct" onchange="toggleIvaPct()">
+                        <option value="16">16% (General)</option>
+                        <option value="8">8% (Reducida)</option>
+                        <option value="31">31% (Suntuaria)</option>
+                        <option value="custom">Otro (%)</option>
+                    </select>
+                    <div id="iva-custom-group" style="display:none; margin-top:8px;">
+                        <label for="iva-custom-pct">Porcentaje personalizado (%)</label>
+                        <input type="number" id="iva-custom-pct" min="0" max="100" step="0.01" placeholder="Ej: 16" oninput="calcularTodo()" inputmode="decimal">
+                    </div>
+                </div>
+
+                <div class="form-group highlight-box">
+                    <label for="iva-rate-mode" class="label-info">Tasa Manual para IVA y Retención (Opcional)</label>
+                    <select id="iva-rate-mode" onchange="toggleIvaRateMode()" style="margin-bottom: 10px;">
+                        <option value="bcv">Usar tasa oficial BCV (Automática)</option>
                         <option value="custom">Definir Tasa Manual distinta para IVA / Retención</option>
                     </select>
                     <div id="iva-manual-group" style="display: none;">
-                        <label>Tasa Manual IVA / Retención (Bs/$)</label>
-                        <input type="number" id="manual-iva-rate" placeholder="Ejemplo: 890.00" step="0.01" oninput="calcularTodo()">
+                        <label for="manual-iva-rate">Tasa Manual IVA / Retención (Bs/$)</label>
+                        <input type="number" id="manual-iva-rate" placeholder="Ej: 890.00" step="0.01" min="0.01" oninput="calcularTodo()" inputmode="decimal">
                     </div>
                 </div>
             </div>
 
             <div class="results-card">
-                <div class="results-title">Resumen Financiero</div>
-
-                <div class="result-row">
-                    <span>Tasa Aplicada (Base):</span>
-                    <span id="res-rate" class="highlight">Bs. 0,00</span>
+                <div class="results-title">
+                    <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    Resumen Financiero
                 </div>
 
-                <div class="result-row" id="row-iva-rate" style="display: none; font-size: 11px; color: #4a90e2;">
-                    <span>Tasa Aplicada (IVA/Ret.):</span>
-                    <span id="res-iva-rate">Bs. 0,00</span>
-                </div>
+                <div class="result-row"><span>Tasa Aplicada (Base):</span><span id="res-rate" class="value highlight">Bs. 0,00</span></div>
+                <div class="result-row" id="row-iva-rate" style="display: none; font-size: 11px; color: var(--info);"><span>Tasa Aplicada (IVA/Ret.):</span><span id="res-iva-rate" class="value">Bs. 0,00</span></div>
+                <div class="result-row"><span>Monto Bruto:</span><span id="res-gross" class="value">Bs. 0,00 ($0.00)</span></div>
+                <div class="result-row discount" id="row-discount" style="display: none;"><span>Descuento Aplicado:</span><span id="res-discount" class="value">- Bs. 0,00 (-$0.00)</span></div>
+                <div class="result-row highlight"><span>Base Imponible Neta:</span><span id="res-base" class="value">Bs. 0,00 ($0.00)</span></div>
+                <div class="result-row" id="row-iva" style="display: none;"><span id="label-iva">IVA (16%):</span><span id="res-iva" class="value">Bs. 0,00 ($0.00)</span></div>
+                <div class="result-row discount" id="row-retention" style="display: none;"><span>(-) Retención IVA:</span><span id="res-retention" class="value">- Bs. 0,00 (-$0.00)</span></div>
+                <div class="result-row" id="row-igtf" style="display: none;"><span>(+) IGTF (3%):</span><span id="res-igtf" class="value">Bs. 0,00</span></div>
+                <div class="result-row total-bs"><span>Total Pagar (Bs):</span><span id="res-total-bs" class="value">Bs. 0,00</span></div>
+                <div class="result-row total-usd"><span>Total Neto ($):</span><span id="res-total-usd" class="value">$0.00</span></div>
 
-                <div class="result-row">
-                    <span>Monto Bruto:</span>
-                    <span id="res-gross">Bs. 0,00 ($0.00)</span>
-                </div>
-
-                <div class="result-row discount" id="row-discount" style="display: none;">
-                    <span>Descuento Aplicado:</span>
-                    <span id="res-discount">- Bs. 0,00 (-$0.00)</span>
-                </div>
-
-                <div class="result-row highlight">
-                    <span>Base Imponible Neta:</span>
-                    <span id="res-base">Bs. 0,00 ($0.00)</span>
-                </div>
-
-                <div class="result-row" id="row-iva" style="display: none;">
-                    <span>IVA (16%):</span>
-                    <span id="res-iva">Bs. 0,00 ($0.00)</span>
-                </div>
-
-                <div class="result-row discount" id="row-retention" style="display: none;">
-                    <span>(- ) Retención IVA:</span>
-                    <span id="res-retention">- Bs. 0,00 (-$0.00)</span>
-                </div>
-
-                <div class="result-row" id="row-igtf" style="display: none;">
-                    <span>(+) IGTF (3%):</span>
-                    <span id="res-igtf">Bs. 0,00</span>
-                </div>
-
-                <div class="result-row total-bs">
-                    <span>Total Pagar (Bs):</span>
-                    <span id="res-total-bs">Bs. 0,00</span>
-                </div>
-
-                <div class="result-row total-usd">
-                    <span>Total Neto ($):</span>
-                    <span id="res-total-usd">$ 0,00</span>
+                <div class="action-row">
+                    <button class="btn-action" onclick="compartirResumen()" aria-label="Compartir resumen">
+                        <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                        Compartir
+                    </button>
+                    <button class="btn-action" onclick="imprimirResumen()" aria-label="Descargar PDF">
+                        <svg viewBox="0 0 24 24"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                        PDF
+                    </button>
+                    <button class="btn-action" onclick="guardarEnHistorial()" aria-label="Guardar en historial">
+                        <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                        Guardar
+                    </button>
                 </div>
             </div>
         </div>
 
-        <!-- PESTAÑA 2: EMPAQUES Y GANANCIAS -->
-        <div class="tab-pane" id="pane-empaque">
-            <div class="results-card" style="margin-top: 0; border-color: #0f4c81;">
-                <div class="results-title" style="color: #4a90e2;">📦 Empaques y Margen de Ganancia</div>
+        <!-- PESTAÑA 2: EMPAQUES -->
+        <div class="tab-pane" id="pane-empaque" role="tabpanel">
+            <div class="results-card" style="margin-top: 0;">
+                <div class="results-title" style="color: var(--info);">
+                    <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                    Empaques y Margen de Ganancia
+                </div>
 
                 <div class="form-group">
-                    <label>Modo de Costo</label>
+                    <label for="pack-mode">Modo de Costo</label>
                     <select id="pack-mode" onchange="togglePackMode()">
                         <option value="box">Caja / Bulto Completo</option>
                         <option value="pack">Paquete Directo (Sin Caja)</option>
@@ -608,398 +220,106 @@
 
                 <div id="mode-box-container">
                     <div class="form-group">
-                        <label>Costo de la Caja ($ USD)</label>
-                        <input type="number" id="cost-box-usd" placeholder="0.00" step="0.01" oninput="calcularEmpaque()">
+                        <label for="cost-box-usd">Costo de la Caja ($ USD)</label>
+                        <input type="number" id="cost-box-usd" placeholder="0.00" step="0.01" min="0" oninput="calcularEmpaque()" inputmode="decimal">
                     </div>
                     <div class="row">
-                        <div class="form-group">
-                            <label>Paquetes por Caja</label>
-                            <input type="number" id="packs-per-box" placeholder="Ej. 12" min="1" oninput="calcularEmpaque()">
-                        </div>
-                        <div class="form-group">
-                            <label>Bolsas por Paquete</label>
-                            <input type="number" id="bags-per-pack" placeholder="Ej. 6" min="1" oninput="calcularEmpaque()">
-                        </div>
+                        <div class="form-group"><label for="packs-per-box">Paquetes por Caja</label><input type="number" id="packs-per-box" placeholder="Ej. 12" min="1" step="1" oninput="calcularEmpaque()" inputmode="numeric"></div>
+                        <div class="form-group"><label for="bags-per-pack">Bolsas por Paquete</label><input type="number" id="bags-per-pack" placeholder="Ej. 6" min="1" step="1" oninput="calcularEmpaque()" inputmode="numeric"></div>
                     </div>
                 </div>
 
                 <div id="mode-pack-container" style="display: none;">
                     <div class="row">
-                        <div class="form-group">
-                            <label>Costo del Paquete ($ USD)</label>
-                            <input type="number" id="cost-pack-usd" placeholder="0.00" step="0.01" oninput="calcularEmpaque()">
-                        </div>
-                        <div class="form-group">
-                            <label>Bolsas por Paquete</label>
-                            <input type="number" id="bags-per-pack-direct" placeholder="Ej. 6" min="1" oninput="calcularEmpaque()">
-                        </div>
+                        <div class="form-group"><label for="cost-pack-usd">Costo del Paquete ($ USD)</label><input type="number" id="cost-pack-usd" placeholder="0.00" step="0.01" min="0" oninput="calcularEmpaque()" inputmode="decimal"></div>
+                        <div class="form-group"><label for="bags-per-pack-direct">Bolsas por Paquete</label><input type="number" id="bags-per-pack-direct" placeholder="Ej. 6" min="1" step="1" oninput="calcularEmpaque()" inputmode="numeric"></div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Precio Sugerido al Cliente por Bolsa ($ USD)</label>
-                    <input type="number" id="retail-price-bag" placeholder="0.00" step="0.01" oninput="calcularEmpaque()">
+                    <label for="retail-price-bag">Precio Sugerido al Cliente por Bolsa ($ USD)</label>
+                    <input type="number" id="retail-price-bag" placeholder="0.00" step="0.01" min="0" oninput="calcularEmpaque()" inputmode="decimal">
                 </div>
 
-                <div style="border-top: 1px dashed var(--border); padding-top: 10px; margin-top: 10px;">
-                    <div class="result-row" id="row-cost-pack">
-                        <span>Costo por Paquete:</span>
-                        <span id="res-cost-pack" class="highlight">Bs. 0,00 ($0.00)</span>
-                    </div>
-                    <div class="result-row">
-                        <span>Costo por Bolsa:</span>
-                        <span id="res-cost-bag" class="highlight">Bs. 0,00 ($0.00)</span>
-                    </div>
-                    <div class="result-row highlight" style="color: #4caf50;">
-                        <span>Ganancia Neta por Bolsa:</span>
-                        <span id="res-profit-bag">Bs. 0,00 ($0.00) [0.0%]</span>
-                    </div>
-                    <div class="result-row total-usd" id="row-total-profit">
-                        <span>Ganancia Total Lote:</span>
-                        <span id="res-profit-total">$0.00 (Bs. 0,00)</span>
-                    </div>
+                <div style="border-top: 1px dashed var(--border-subtle); padding-top: 12px; margin-top: 12px;">
+                    <div class="result-row" id="row-cost-pack"><span>Costo por Paquete:</span><span id="res-cost-pack" class="value highlight">Bs. 0,00 ($0.00)</span></div>
+                    <div class="result-row"><span>Costo por Bolsa:</span><span id="res-cost-bag" class="value highlight">Bs. 0,00 ($0.00)</span></div>
+                    <div class="result-row highlight" style="color: var(--success);"><span>Ganancia Neta por Bolsa:</span><span id="res-profit-bag" class="value" style="color: var(--success);">Bs. 0,00 ($0.00) [0.0%]</span></div>
+                    <div class="result-row total-usd" id="row-total-profit"><span>Ganancia Total Lote:</span><span id="res-profit-total" class="value">$0.00 (Bs. 0,00)</span></div>
+                </div>
+
+                <div class="action-row">
+                    <button class="btn-action" onclick="compartirResumenEmpaque()" aria-label="Compartir resumen de empaque">
+                        <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                        Compartir
+                    </button>
+                    <button class="btn-action" onclick="imprimirEmpaque()" aria-label="Descargar PDF de empaque">
+                        <svg viewBox="0 0 24 24"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                        PDF
+                    </button>
                 </div>
             </div>
         </div>
 
         <div class="ad-container">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1456502299841137"
-                 data-ad-slot="auto"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1456502299841137" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
 
-        <!-- FIRMA DE CONFIANZA INSTITUCIONAL -->
         <div class="trust-signature">
-            <div class="trust-title">Desarrollado por Grupo FERSE</div>
+            <div class="trust-title">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Desarrollado por Grupo FERSE
+            </div>
             <div class="trust-subtitle">11 años de experiencia brindando soluciones comerciales.</div>
         </div>
-    </div>
+    </main>
 
-    <!-- SECCIÓN ACERCA DE / CONTACTO (DESPLEGABLE CON FONDO BLANCO) -->
-    <div id="about-screen">
+    <!-- PANTALLA CONTACTO -->
+    <div id="about-screen" style="display: none;">
         <div class="about-content">
-            <img src="./logogrupoferse.png" alt="Logo Grupo FERSE" class="about-logo">
-            <h2 class="about-title">Desarrollado por Grupo FERSE</h2>
+            <img src="https://calculadora-comercial-ve-grupoferse.github.io/logogrupoferse.png" alt="Logo Grupo FERSE" class="about-logo">
+            <h2 class="about-title">Grupo FERSE</h2>
             <p class="about-subtitle">11 años de experiencia brindando soluciones comerciales • Transformación Social en proceso.</p>
-
             <div class="contact-box">
-                <a href="https://wa.me/584163791724" target="_blank" class="contact-link link-wa">
-                    <span>💬</span> Contacto Directo por WhatsApp
+                <a href="https://wa.me/584163791724" target="_blank" rel="noopener noreferrer" class="contact-link link-wa">
+                    <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    Contacto Directo por WhatsApp
                 </a>
-                <a href="https://whatsapp.com/channel/0029VbDRbIEFSAtBaheVbx2J" target="_blank" class="contact-link link-channel">
-                    <span>📢</span> Canal Oficial de WhatsApp
+                <a href="https://whatsapp.com/channel/0029VbDRbIEFSAtBaheVbx2J" target="_blank" rel="noopener noreferrer" class="contact-link link-channel">
+                    <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    Canal Oficial de WhatsApp
                 </a>
                 <a href="mailto:grupofersevenezuela@gmail.com" class="contact-link link-email">
-                    <span>✉️</span> Correo Electrónico
+                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    Correo Electrónico
                 </a>
-                <a href="https://www.facebook.com/grupoferse/" target="_blank" class="contact-link link-fb">
-                    <span>📘</span> Página Oficial de Facebook
+                <a href="https://www.facebook.com/grupoferse/" target="_blank" rel="noopener noreferrer" class="contact-link link-fb">
+                    <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    Página Oficial de Facebook
                 </a>
             </div>
-
-            <button class="btn-back-calc" onclick="closeAbout()">← Volver a la Calculadora</button>
+            <button class="btn-back-calc" onclick="closeAbout()">Volver a la Calculadora</button>
         </div>
     </div>
 
-    <div id="update-banner">
-        <span>✨ Nueva versión disponible</span>
+    <!-- PANTALLA HISTORIAL -->
+    <div id="history-screen" style="display: none;">
+        <div class="about-content">
+            <h2 class="about-title">Historial de Cálculos</h2>
+            <p class="about-subtitle">Últimos 10 cálculos guardados en este dispositivo.</p>
+            <div id="history-list" class="history-list"></div>
+            <button class="btn-secondary" onclick="borrarHistorial()">Borrar todo el historial</button>
+            <button class="btn-back-calc" onclick="cerrarHistorial()">Volver a la Calculadora</button>
+        </div>
+    </div>
+
+    <div id="update-banner" style="display: none;">
+        <span>Nueva versión disponible</span>
         <button onclick="actualizarApp()">Actualizar</button>
     </div>
 </div>
 
-<script>
-    let bcvRates = { usd: 875.65, eur: 980.61 };
-    let newWorker = null;
-
-    function openAbout() {
-        document.getElementById('about-screen').style.display = 'block';
-    }
-
-    function closeAbout() {
-        document.getElementById('about-screen').style.display = 'none';
-    }
-
-    function switchTab(tabName) {
-        document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-
-        if (tabName === 'fiscal') {
-            document.getElementById('pane-fiscal').classList.add('active');
-            document.getElementById('btn-tab-fiscal').classList.add('active');
-        } else {
-            document.getElementById('pane-empaque').classList.add('active');
-            document.getElementById('btn-tab-empaque').classList.add('active');
-        }
-    }
-
-    async function fetchBCV() {
-        const displayUsd = document.getElementById('rate-usd-display');
-        const displayEur = document.getElementById('rate-eur-display');
-        
-        displayUsd.innerText = "USD: Sincronizando...";
-        displayEur.innerText = "EUR: Sincronizando...";
-
-        try {
-            const [resUsd, resEur] = await Promise.all([
-                fetch('https://ve.dolarapi.com/v1/dolares/oficial', { cache: 'no-store' }),
-                fetch('https://ve.dolarapi.com/v1/euros/oficial', { cache: 'no-store' })
-            ]);
-
-            if (resUsd.ok) {
-                let dataUsd = await resUsd.json();
-                if (dataUsd && dataUsd.promedio) {
-                    bcvRates.usd = parseFloat(dataUsd.promedio);
-                }
-            }
-
-            if (resEur.ok) {
-                let dataEur = await resEur.json();
-                if (dataEur && dataEur.promedio) {
-                    bcvRates.eur = parseFloat(dataEur.promedio);
-                }
-            }
-        } catch (e) {
-            console.log("Aviso: No se pudo conectar con DolarApi.com, usando valores de respaldo.", e);
-        }
-
-        displayUsd.innerText = `USD: Bs. ${bcvRates.usd.toFixed(2)}`;
-        displayEur.innerText = `EUR: Bs. ${bcvRates.eur.toFixed(2)}`;
-        calcularTodo();
-    }
-
-    function toggleRateSource() {
-        let source = document.getElementById('rate-source').value;
-        let manualGroup = document.getElementById('manual-rate-group');
-        manualGroup.style.display = (source === 'manual') ? 'block' : 'none';
-        calcularTodo();
-    }
-
-    function toggleDocType() {
-        let docType = document.getElementById('doc-type').value;
-        let fiscalOptions = document.getElementById('fiscal-options');
-        fiscalOptions.style.display = (docType === 'fiscal') ? 'block' : 'none';
-        calcularTodo();
-    }
-
-    function toggleIvaRateMode() {
-        let mode = document.getElementById('iva-rate-mode').value;
-        let ivaManualGroup = document.getElementById('iva-manual-group');
-        ivaManualGroup.style.display = (mode === 'custom') ? 'block' : 'none';
-        calcularTodo();
-    }
-
-    function togglePackMode() {
-        let mode = document.getElementById('pack-mode').value;
-        let boxContainer = document.getElementById('mode-box-container');
-        let packContainer = document.getElementById('mode-pack-container');
-        let rowCostPack = document.getElementById('row-cost-pack');
-
-        if (mode === 'box') {
-            boxContainer.style.display = 'block';
-            packContainer.style.display = 'none';
-            rowCostPack.style.display = 'flex';
-        } else {
-            boxContainer.style.display = 'none';
-            packContainer.style.display = 'block';
-            rowCostPack.style.display = 'none';
-        }
-        calcularEmpaque();
-    }
-
-    function formatBs(val) {
-        return "Bs. " + val.toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    }
-
-    function formatUsd(val) {
-        return "$" + val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    }
-
-    function getBaseRate() {
-        let source = document.getElementById('rate-source').value;
-        if (source === 'bcv-eur') return bcvRates.eur;
-        if (source === 'manual') return parseFloat(document.getElementById('manual-rate').value) || bcvRates.usd;
-        return bcvRates.usd;
-    }
-
-    function getIvaRate() {
-        let docType = document.getElementById('doc-type').value;
-        if (docType === 'fiscal') {
-            let ivaMode = document.getElementById('iva-rate-mode').value;
-            if (ivaMode === 'custom') {
-                return parseFloat(document.getElementById('manual-iva-rate').value) || bcvRates.usd;
-            } else {
-                // Si elige "bcv", utiliza automáticamente la tasa BCV oficial USD
-                return bcvRates.usd;
-            }
-        }
-        return getBaseRate();
-    }
-
-    function calcularTodo() {
-        calcular();
-        calcularEmpaque();
-    }
-
-    function calcular() {
-        let baseRate = getBaseRate();
-        let ivaRate = getIvaRate();
-        
-        let amountUsd = parseFloat(document.getElementById('amount-usd').value) || 0;
-        let discountPct = parseFloat(document.getElementById('discount-pct').value) || 0;
-        let docType = document.getElementById('doc-type').value;
-
-        let grossUsd = amountUsd;
-        let grossBs = grossUsd * baseRate;
-
-        let discountUsd = grossUsd * (discountPct / 100);
-        let discountBs = discountUsd * baseRate;
-
-        let netUsd = grossUsd - discountUsd;
-        let netBs = netUsd * baseRate;
-
-        let rowDiscount = document.getElementById('row-discount');
-        if (discountPct > 0) {
-            rowDiscount.style.display = 'flex';
-            document.getElementById('res-discount').innerText = `- ${formatBs(discountBs)} (-${formatUsd(discountUsd)})`;
-        } else {
-            rowDiscount.style.display = 'none';
-        }
-
-        let totalBs = netBs;
-        let rowIva = document.getElementById('row-iva');
-        let rowRetention = document.getElementById('row-retention');
-        let rowIgtf = document.getElementById('row-igtf');
-        let rowIvaRate = document.getElementById('row-iva-rate');
-
-        if (docType === 'fiscal') {
-            rowIva.style.display = 'flex';
-            rowRetention.style.display = 'flex';
-
-            let ivaMode = document.getElementById('iva-rate-mode').value;
-            if (ivaMode === 'custom' || baseRate !== ivaRate) {
-                rowIvaRate.style.display = 'flex';
-                document.getElementById('res-iva-rate').innerText = formatBs(ivaRate);
-            } else {
-                rowIvaRate.style.display = 'none';
-            }
-
-            let ivaUsd = netUsd * 0.16;
-            let ivaBs = ivaUsd * ivaRate;
-            document.getElementById('res-iva').innerText = `${formatBs(ivaBs)} (${formatUsd(ivaUsd)})`;
-
-            let retentionPct = parseFloat(document.getElementById('retention-iva').value) || 0;
-            let retentionUsd = ivaUsd * (retentionPct / 100);
-            let retentionBs = ivaBs * (retentionPct / 100);
-            document.getElementById('res-retention').innerText = `- ${formatBs(retentionBs)} (-${formatUsd(retentionUsd)})`;
-
-            let applyIgtf = document.getElementById('apply-igtf').value;
-            let igtfBs = 0;
-            if (applyIgtf === 'si') {
-                igtfBs = (netBs + ivaBs) * 0.03;
-                document.getElementById('res-igtf').innerText = formatBs(igtfBs);
-                rowIgtf.style.display = 'flex';
-            } else {
-                rowIgtf.style.display = 'none';
-            }
-
-            totalBs = netBs + ivaBs - retentionBs + igtfBs;
-        } else {
-            rowIva.style.display = 'none';
-            rowRetention.style.display = 'none';
-            rowIgtf.style.display = 'none';
-            rowIvaRate.style.display = 'none';
-        }
-
-        let totalUsd = baseRate > 0 ? (totalBs / baseRate) : 0;
-
-        document.getElementById('res-rate').innerText = formatBs(baseRate);
-        document.getElementById('res-gross').innerText = `${formatBs(grossBs)} (${formatUsd(grossUsd)})`;
-        document.getElementById('res-base').innerText = `${formatBs(netBs)} (${formatUsd(netUsd)})`;
-        document.getElementById('res-total-bs').innerText = formatBs(totalBs);
-        document.getElementById('res-total-usd').innerText = formatUsd(totalUsd);
-    }
-
-    function calcularEmpaque() {
-        let baseRate = getBaseRate();
-        let mode = document.getElementById('pack-mode').value;
-        let retailPriceBag = parseFloat(document.getElementById('retail-price-bag').value) || 0;
-
-        let costPackUsd = 0;
-        let costBagUsd = 0;
-        let totalBags = 0;
-
-        if (mode === 'box') {
-            let costBoxUsd = parseFloat(document.getElementById('cost-box-usd').value) || 0;
-            let packsPerBox = parseFloat(document.getElementById('packs-per-box').value) || 0;
-            let bagsPerPack = parseFloat(document.getElementById('bags-per-pack').value) || 0;
-
-            if (packsPerBox > 0) costPackUsd = costBoxUsd / packsPerBox;
-            totalBags = packsPerBox * bagsPerPack;
-            if (totalBags > 0) costBagUsd = costBoxUsd / totalBags;
-
-            document.getElementById('res-cost-pack').innerText = `${formatBs(costPackUsd * baseRate)} (${formatUsd(costPackUsd)})`;
-        } else {
-            let costPackDirect = parseFloat(document.getElementById('cost-pack-usd').value) || 0;
-            let bagsPerPackDirect = parseFloat(document.getElementById('bags-per-pack-direct').value) || 0;
-
-            totalBags = bagsPerPackDirect;
-            if (bagsPerPackDirect > 0) costBagUsd = costPackDirect / bagsPerPackDirect;
-        }
-
-        let profitBagUsd = retailPriceBag - costBagUsd;
-        let profitBagBs = profitBagUsd * baseRate;
-        let marginPct = retailPriceBag > 0 ? (profitBagUsd / retailPriceBag) * 100 : 0;
-        let totalProfitUsd = profitBagUsd * totalBags;
-        let totalProfitBs = totalProfitUsd * baseRate;
-
-        document.getElementById('res-cost-bag').innerText = `${formatBs(costBagUsd * baseRate)} (${formatUsd(costBagUsd)})`;
-        
-        let elProfitBag = document.getElementById('res-profit-bag');
-        elProfitBag.innerText = `${formatBs(profitBagBs)} (${formatUsd(profitBagUsd)}) [${marginPct.toFixed(1)}%]`;
-        elProfitBag.style.color = profitBagUsd < 0 ? '#e53935' : '#4caf50';
-
-        document.getElementById('res-profit-total').innerText = `${formatUsd(totalProfitUsd)} (${formatBs(totalProfitBs)})`;
-    }
-
-    fetchBCV();
-
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./sw.js').then((reg) => {
-                reg.addEventListener('updatefound', () => {
-                    newWorker = reg.installing;
-                    newWorker.addEventListener('statechange', () => {
-                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                            document.getElementById('update-banner').style.display = 'flex';
-                        }
-                    });
-                });
-            }).catch((err) => console.log('Error Service Worker', err));
-        });
-    }
-
-    function actualizarApp() {
-        if (newWorker) {
-            newWorker.postMessage({ action: 'skipWaiting' });
-        }
-        window.location.reload();
-    }
-    
-    // Registrar evento cuando el usuario instala la PWA
-    window.addEventListener('appinstalled', () => {
-        if (typeof gtag === 'function') {
-            gtag('event', 'pwa_installed', {
-                event_category: 'PWA',
-                event_label: 'Calculadora Comercial VE Instalada'
-            });
-        }
-    });
-</script>
+<script src="app.min.js" defer></script>
 </body>
 </html>

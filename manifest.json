@@ -2,25 +2,21 @@
   "id": "calculadora-comercial-ve",
   "name": "Calculadora Comercial VE",
   "short_name": "CalcVE",
-  "description": "Calculadora comercial y fiscal con tasa BCV para Venezuela.",
+  "description": "Calculadora comercial y fiscal con tasa BCV, IVA, IGTF y empaques. Funciona offline. Grupo FERSE.",
+  "lang": "es-VE",
+  "dir": "ltr",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#121212",
+  "background_color": "#0d1117",
   "theme_color": "#0f4c81",
+  "categories": ["business", "finance", "productivity", "utilities"],
   "icons": [
-    {
-      "src": "icon.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "screenshot1.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
+    { "src": "icon.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "screenshot1.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "screenshot1.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "screenshots": [
     {
