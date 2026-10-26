@@ -49,40 +49,95 @@ html, body {
 
 .fixed-header { flex-shrink: 0; background: var(--surface-card); backdrop-filter: blur(12px); z-index: 10; box-shadow: var(--shadow-md); position: sticky; top: 0; border-bottom: 1px solid var(--border-subtle); }
 
-/* CABECERA EN UNA SOLA FILA */
+/* CABECERA PREMIUM */
 .app-bar { 
-    padding: 12px 16px; 
+    padding: 10px 16px; 
     display: flex; 
     align-items: center; 
     justify-content: space-between; 
     border-bottom: 1px solid var(--border-subtle); 
     gap: 8px; 
-    flex-wrap: wrap; /* Permite que se adapte si la pantalla es muy pequeña */
+    flex-wrap: nowrap; /* Forza a que todo esté en una sola línea */
+    background: var(--surface-card);
 }
-.app-title { font-size: 15px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 8px; letter-spacing: -0.01em; }
-.app-title svg { width: 22px; height: 22px; stroke: var(--info); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+.app-title { 
+    font-size: 15px; 
+    font-weight: 600; 
+    color: var(--text-primary); 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    letter-spacing: -0.01em; 
+    white-space: nowrap; /* Evita que el texto se rompa en dos líneas */
+}
+
+.app-title svg { 
+    width: 22px; 
+    height: 22px; 
+    stroke: var(--info); 
+    fill: none; 
+    stroke-width: 2; 
+    stroke-linecap: round; 
+    stroke-linejoin: round; 
+    flex-shrink: 0; 
+}
+
+/* Etiqueta de versión estilo píldora al lado del título */
+.version-badge { 
+    font-size: 10px; 
+    background: rgba(88,166,255,0.12); 
+    color: var(--info); 
+    padding: 2px 8px; 
+    border-radius: 12px; 
+    font-weight: 600; 
+    border: 1px solid rgba(88,166,255,0.3); 
+    margin-left: 4px;
+}
 
 .header-actions { 
     display: flex; 
     align-items: center; 
-    gap: 6px; 
+    gap: 8px; 
+    flex-shrink: 0; /* Evita que los botones se aplasten */
 }
 
-.header-buttons-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+/* Botones redondos un poco más estilizados */
+.btn-icon { 
+    background: var(--surface-elevated); 
+    border: 1px solid var(--border-subtle); 
+    color: var(--text-secondary); 
+    width: 34px; 
+    height: 34px; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    cursor: pointer; 
+    transition: all .2s; 
 }
-
-.btn-icon { background: var(--surface-elevated); border: 1px solid var(--border-subtle); color: var(--text-secondary); width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all .2s; }
 .btn-icon:hover { background: var(--surface-card); color: var(--text-primary); }
 .btn-icon svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-.btn-info-about { background: rgba(88,166,255,0.12); color: var(--info); border: 1px solid rgba(88,166,255,0.3); padding: 7px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 5px; transition: all .2s; font-family: 'Inter', sans-serif; }
+/* Botón de contacto un poco más pulido */
+.btn-info-about { 
+    background: rgba(88,166,255,0.12); 
+    color: var(--info); 
+    border: 1px solid rgba(88,166,255,0.3); 
+    padding: 0 14px; 
+    height: 34px;
+    border-radius: 20px; 
+    font-size: 12px; 
+    font-weight: 600; 
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    gap: 6px; 
+    transition: all .2s; 
+    font-family: 'Inter', sans-serif; 
+}
 .btn-info-about:hover { background: rgba(88,166,255,0.2); }
 .btn-info-about svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
-
-.version-badge { font-size: 11px; background: rgba(88,166,255,0.15); color: var(--info); padding: 3px 10px; border-radius: 12px; font-weight: 500; border: 1px solid rgba(88,166,255,0.2); margin-left: 4px; }
 
 .offline-banner { background: #7d4a00; color: #fff; padding: 7px 16px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; font-weight: 500; }
 
@@ -193,7 +248,7 @@ body.light-theme #about-screen, body.light-theme #history-screen { background: #
 
 @media (max-width: 380px) {
     .app-title span { font-size: 13px; }
-    .btn-info-about { padding: 6px 8px; font-size: 11px; }
+    .btn-info-about { padding: 0 10px; font-size: 11px; }
     .tab-btn { font-size: 11px; padding: 9px 4px; }
 }
 
