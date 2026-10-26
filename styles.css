@@ -316,3 +316,33 @@ body.light-theme #about-screen, body.light-theme #history-screen { background: #
     border-radius: var(--radius-md);
     pointer-events: auto;
 }
+/* AJUSTE FINO PARA CELULARES (iPhone y Android) */
+@media (max-width: 420px) {
+    /* Hacemos el título un poco más pequeño para que quepa completo */
+    .app-title span { 
+        font-size: 13px; 
+    }
+    
+    /* Reducimos un poquito el tamaño de los 3 botones de la derecha */
+    .btn-icon, .btn-info-about {
+        width: 30px;
+        height: 30px;
+    }
+    
+    /* Ajustamos el ícono interno de esos botones */
+    .btn-icon svg, .btn-info-about svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    /* Pegamos un poco más los botones entre sí para ganar espacio */
+    .header-actions {
+        gap: 4px;
+    }
+    
+    /* Hacemos la etiqueta de versión un pelín más pequeña */
+    .version-badge {
+        font-size: 9px;
+        padding: 2px 6px;
+    }
+}
