@@ -47,7 +47,7 @@ html, body {
 
 .phone-container { min-height: 100vh; width: 100%; display: flex; flex-direction: column; padding-bottom: 16px; background: var(--surface-dark); }
 
-/* MODIFICADO: Añadido padding-top para el notch y Safe Area */
+/* CABECERA CON SAFE AREA (NOTCH) */
 .fixed-header { 
     flex-shrink: 0; 
     background: var(--surface-card); 
@@ -57,10 +57,10 @@ html, body {
     position: sticky; 
     top: 0; 
     border-bottom: 1px solid var(--border-subtle); 
-    padding-top: env(safe-area-inset-top); /* Respeta el notch en iOS y Android */
+    padding-top: env(safe-area-inset-top); 
 }
 
-/* CABECERA PREMIUM MODIFICADA */
+/* CABECERA PREMIUM */
 .app-bar { 
     padding: 10px 16px; 
     display: flex; 
@@ -70,7 +70,6 @@ html, body {
     gap: 8px; 
     flex-wrap: nowrap; 
     background: var(--surface-card);
-    /* Aseguramos que nada se salga por los lados */
     padding-left: max(16px, env(safe-area-inset-left));
     padding-right: max(16px, env(safe-area-inset-right));
 }
@@ -84,9 +83,9 @@ html, body {
     gap: 8px; 
     letter-spacing: -0.01em; 
     white-space: nowrap; 
-    overflow: hidden; /* Evita que el texto empuje los botones */
+    overflow: hidden; 
     text-overflow: ellipsis;
-    flex-shrink: 1; /* Permite que el título se encoja si es necesario */
+    flex-shrink: 1; 
     min-width: 0;
 }
 
@@ -113,13 +112,12 @@ html, body {
     white-space: nowrap;
 }
 
-/* MODIFICADO: Ajustes para que no se desborde */
 .header-actions { 
     display: flex; 
     align-items: center; 
-    gap: 6px; /* Reducido un poco para dar espacio */
-    flex-shrink: 0; /* Evita que los botones se aplasten */
-    margin-left: auto; /* Empuja los botones a la derecha */
+    gap: 6px; 
+    flex-shrink: 0; 
+    margin-left: auto; 
 }
 
 .btn-icon { 
@@ -134,16 +132,17 @@ html, body {
     justify-content: center; 
     cursor: pointer; 
     transition: all .2s; 
-    flex-shrink: 0; /* No se aplastan */
+    flex-shrink: 0; 
 }
 .btn-icon:hover { background: var(--surface-card); color: var(--text-primary); }
 .btn-icon svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
+/* BOTÓN DE CONTACTO MEJORADO */
 .btn-info-about { 
     background: rgba(88,166,255,0.12); 
     color: var(--info); 
     border: 1px solid rgba(88,166,255,0.3); 
-    padding: 0 12px; /* Reducido un poco */
+    padding: 0 16px; 
     height: 34px;
     border-radius: 20px; 
     font-size: 12px; 
@@ -151,17 +150,17 @@ html, body {
     cursor: pointer; 
     display: flex; 
     align-items: center; 
-    gap: 6px; 
+    gap: 8px; 
     transition: all .2s; 
     font-family: 'Inter', sans-serif; 
-    flex-shrink: 0; /* No se aplasta */
+    flex-shrink: 0; 
 }
 .btn-info-about:hover { background: rgba(88,166,255,0.2); }
 .btn-info-about svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
 
-/* AÑADIDO: Ocultar el texto del botón Contacto en pantallas pequeñas */
+/* OCULTAR TEXTO DE CONTACTO EN CELULARES */
 @media (max-width: 480px) {
-    .contact-text { display: none; } /* Solo muestra el ícono */
+    .contact-text { display: none; } 
     .btn-info-about { padding: 0 10px; width: 34px; justify-content: center; }
 }
 
@@ -202,6 +201,16 @@ input, select { width: 100%; padding: 11px 14px; background: var(--surface-eleva
 input:focus, select:focus { border-color: var(--info); box-shadow: 0 0 0 3px rgba(88,166,255,.15); }
 input:invalid:not(:placeholder-shown) { border-color: var(--danger); }
 select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238b949e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px; }
+
+/* OCULTAR FLECHITAS DE INPUTS NUMÉRICOS */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+input[type=number] { 
+    -moz-appearance: textfield; 
+}
 
 .highlight-box { background: rgba(88,166,255,.06); padding: 12px; border-radius: var(--radius-md); border: 1px solid rgba(88,166,255,.2); }
 
@@ -272,12 +281,14 @@ body.light-theme #about-screen, body.light-theme #history-screen { background: #
     .total-bs, .total-usd { color: #000 !important; font-weight: 700; }
 }
 
-/* RESPONSIVE AJUSTES FINOS */
-@media (max-width: 380px) {
+/* RESPONSIVE AJUSTES FINOS (iPhone y Android) */
+@media (max-width: 420px) {
     .app-title span { font-size: 13px; }
-    .btn-info-about { padding: 0 10px; font-size: 11px; }
+    .btn-icon, .btn-info-about { width: 30px; height: 30px; padding: 0; justify-content: center; }
+    .btn-icon svg, .btn-info-about svg { width: 14px; height: 14px; }
+    .header-actions { gap: 4px; }
+    .version-badge { font-size: 9px; padding: 2px 6px; }
     .tab-btn { font-size: 11px; padding: 9px 4px; }
-    .version-badge { font-size: 9px; padding: 1px 6px; }
 }
 
 /* ESTILOS DEL TUTORIAL */
@@ -315,34 +326,4 @@ body.light-theme #about-screen, body.light-theme #history-screen { background: #
     background: var(--surface-card) !important; 
     border-radius: var(--radius-md);
     pointer-events: auto;
-}
-/* AJUSTE FINO PARA CELULARES (iPhone y Android) */
-@media (max-width: 420px) {
-    /* Hacemos el título un poco más pequeño para que quepa completo */
-    .app-title span { 
-        font-size: 13px; 
-    }
-    
-    /* Reducimos un poquito el tamaño de los 3 botones de la derecha */
-    .btn-icon, .btn-info-about {
-        width: 30px;
-        height: 30px;
-    }
-    
-    /* Ajustamos el ícono interno de esos botones */
-    .btn-icon svg, .btn-info-about svg {
-        width: 14px;
-        height: 14px;
-    }
-
-    /* Pegamos un poco más los botones entre sí para ganar espacio */
-    .header-actions {
-        gap: 4px;
-    }
-    
-    /* Hacemos la etiqueta de versión un pelín más pequeña */
-    .version-badge {
-        font-size: 9px;
-        padding: 2px 6px;
-    }
 }
