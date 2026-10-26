@@ -269,18 +269,6 @@ body.light-theme #about-screen, body.light-theme #history-screen { background: #
 #update-banner span { font-size: 13px; font-weight: 500; }
 #update-banner button { background: var(--success); color: #fff; border: none; padding: 7px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; }
 
-/* IMPRESIÓN / PDF */
-@media print {
-    body { background: #fff !important; color: #000 !important; }
-    .fixed-header, .ad-container, .action-row, .btn-sync, .trust-signature, .nav-tabs, #update-banner, .btn-icon, .btn-info-about, .rate-card .btn-sync, .offline-banner { display: none !important; }
-    .rate-card { background: #0f4c81 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .results-card { border: 1px solid #000 !important; page-break-inside: avoid; }
-    .tab-pane:not(.active) { display: none !important; }
-    * { color: #000 !important; }
-    .results-title, .result-row .value, .rate-val { color: #000 !important; }
-    .total-bs, .total-usd { color: #000 !important; font-weight: 700; }
-}
-
 /* RESPONSIVE AJUSTES FINOS (iPhone y Android) */
 @media (max-width: 420px) {
     .app-title span { font-size: 13px; }
@@ -326,4 +314,43 @@ body.light-theme #about-screen, body.light-theme #history-screen { background: #
     background: var(--surface-card) !important; 
     border-radius: var(--radius-md);
     pointer-events: auto;
+}
+
+/* ============================================================ */
+/* NUEVO: REGLAS ESTRICTAS PARA LA IMPRESIÓN / PDF EN BLANCO    */
+/* ============================================================ */
+@media print {
+    /* Ocultar absolutamente todo el body por defecto */
+    body * {
+        visibility: hidden;
+    }
+    
+    /* Mostrar solo el contenedor de exportación y sus hijos */
+    #pdf-export-container, #pdf-export-container * {
+        visibility: visible;
+    }
+    
+    /* Posicionar el contenedor en la parte superior izquierda para que no queden espacios en blanco */
+    #pdf-export-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: block !important; /* Forzar visualización */
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    /* Asegurar que los colores del logo y textos se impriman */
+    #pdf-export-container img {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    /* Eliminar márgenes del body al imprimir */
+    html, body {
+        margin: 0;
+        padding: 0;
+        background: #ffffff !important;
+    }
 }

@@ -50,8 +50,8 @@
                     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
                     <span class="contact-text">Contacto</span>
                 </button>
-                <!-- Versión actualizada a v3.9 -->
-                <span class="version-badge">v3.9</span>
+                <!-- Versión actualizada a v4.0 -->
+                <span class="version-badge">v4.0</span>
             </div>
         </div>
 
@@ -105,7 +105,6 @@
 
         <div class="form-group" id="manual-rate-group" style="display: none;">
             <label for="manual-rate">Tasa Manual Base Imponible (Bs/$)</label>
-            <!-- CAMBIADO: step="any" -->
             <input type="number" id="manual-rate" placeholder="Ej: 875.65" step="any" min="0.01" oninput="calcularTodo()" inputmode="decimal">
         </div>
 
@@ -114,7 +113,6 @@
             <div class="row">
                 <div class="form-group">
                     <label for="amount-usd">Monto Base ($ USD)</label>
-                    <!-- CAMBIADO: step="any" -->
                     <input type="number" id="amount-usd" placeholder="0.00" step="any" min="0" oninput="calcularTodo()" inputmode="decimal">
                 </div>
                 <div class="form-group">
@@ -172,7 +170,6 @@
                     </select>
                     <div id="iva-manual-group" style="display: none;">
                         <label for="manual-iva-rate">Tasa Manual IVA / Retención (Bs/$)</label>
-                        <!-- CAMBIADO: step="any" -->
                         <input type="number" id="manual-iva-rate" placeholder="Ej: 890.00" step="any" min="0.01" oninput="calcularTodo()" inputmode="decimal">
                     </div>
                 </div>
@@ -231,7 +228,6 @@
                 <div id="mode-box-container">
                     <div class="form-group">
                         <label for="cost-box-usd">Costo de la Caja ($ USD)</label>
-                        <!-- CAMBIADO: step="any" -->
                         <input type="number" id="cost-box-usd" placeholder="0.00" step="any" min="0" oninput="calcularEmpaque()" inputmode="decimal">
                     </div>
                     <div class="row">
@@ -243,7 +239,6 @@
                 <div id="mode-pack-container" style="display: none;">
                     <div class="row">
                         <div class="form-group"><label for="cost-pack-usd">Costo del Paquete ($ USD)</label>
-                            <!-- CAMBIADO: step="any" -->
                             <input type="number" id="cost-pack-usd" placeholder="0.00" step="any" min="0" oninput="calcularEmpaque()" inputmode="decimal"></div>
                         <div class="form-group"><label for="bags-per-pack-direct">Bolsas por Paquete</label><input type="number" id="bags-per-pack-direct" placeholder="Ej. 6" min="1" step="1" oninput="calcularEmpaque()" inputmode="numeric"></div>
                     </div>
@@ -251,7 +246,6 @@
 
                 <div class="form-group">
                     <label for="retail-price-bag">Precio Sugerido al Cliente por Bolsa ($ USD)</label>
-                    <!-- CAMBIADO: step="any" -->
                     <input type="number" id="retail-price-bag" placeholder="0.00" step="any" min="0" oninput="calcularEmpaque()" inputmode="decimal">
                 </div>
 
@@ -274,6 +268,30 @@
                 </div>
             </div>
         </div>
+
+        <!-- ========================================== -->
+        <!-- NUEVO: CONTENEDOR EXCLUSIVO PARA EL PDF    -->
+        <!-- ========================================== -->
+        <div id="pdf-export-container" style="display: none; background: #ffffff; color: #000000; padding: 30px; font-family: Arial, sans-serif; width: 100%; max-width: 800px; margin: 0 auto;">
+            <!-- Encabezado con Logo -->
+            <div style="text-align: center; margin-bottom: 20px; border-bottom: 2px solid #0f4c81; padding-bottom: 15px;">
+                <img src="https://calculadora-comercial-ve-grupoferse.github.io/logogrupoferse.png" alt="Grupo FERSE" style="max-width: 120px; margin-bottom: 10px;">
+                <h2 style="color: #0f4c81; margin: 0; font-size: 22px;">Calculadora Comercial VE</h2>
+                <p style="margin: 5px 0 0 0; font-size: 14px; color: #555;">Desarrollado por Grupo FERSE</p>
+            </div>
+
+            <!-- Contenido dinámico (se llena con JS) -->
+            <div id="pdf-content-data" style="margin-bottom: 30px; font-size: 14px; line-height: 1.6;">
+                <!-- Aquí se inyectará el resumen -->
+            </div>
+
+            <!-- Pie de página -->
+            <div style="text-align: center; font-size: 12px; color: #777; margin-top: 40px; border-top: 1px solid #ccc; padding-top: 15px;">
+                <p>Este documento fue generado automáticamente por la Calculadora Comercial VE.</p>
+                <p>Visita nuestra herramienta gratuita en: <strong>https://calculadora-comercial-ve-grupoferse.github.io/</strong></p>
+            </div>
+        </div>
+        <!-- ========================================== -->
 
         <div class="ad-container">
             <ins class="adsbygoogle"
