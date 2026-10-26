@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
+    <!-- MODIFICADO: Añadido viewport-fit=cover para respetar el notch -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://*.google-analytics.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://ve.dolarapi.com https://*.google-analytics.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google; frame-src https://googleads.g.doubleclick.net https://*.googlesyndication.com https://*.doubleclick.net https://*.adtrafficquality.google https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <title>Calculadora Comercial VE · Grupo FERSE</title>
     <meta name="description" content="Calculadora comercial y fiscal con tasa BCV, IVA, IGTF y empaques. Funciona offline. Grupo FERSE.">
@@ -47,9 +48,10 @@
                 </button>
                 <button class="btn-info-about" onclick="openAbout()">
                     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                    Contacto
+                    <span class="contact-text">Contacto</span>
                 </button>
-                <span class="version-badge">v3.7</span>
+                <!-- Versión actualizada a v3.8 -->
+                <span class="version-badge">v3.8</span>
             </div>
         </div>
 

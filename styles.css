@@ -47,9 +47,20 @@ html, body {
 
 .phone-container { min-height: 100vh; width: 100%; display: flex; flex-direction: column; padding-bottom: 16px; background: var(--surface-dark); }
 
-.fixed-header { flex-shrink: 0; background: var(--surface-card); backdrop-filter: blur(12px); z-index: 10; box-shadow: var(--shadow-md); position: sticky; top: 0; border-bottom: 1px solid var(--border-subtle); }
+/* MODIFICADO: Añadido padding-top para el notch y Safe Area */
+.fixed-header { 
+    flex-shrink: 0; 
+    background: var(--surface-card); 
+    backdrop-filter: blur(12px); 
+    z-index: 10; 
+    box-shadow: var(--shadow-md); 
+    position: sticky; 
+    top: 0; 
+    border-bottom: 1px solid var(--border-subtle); 
+    padding-top: env(safe-area-inset-top); /* Respeta el notch en iOS y Android */
+}
 
-/* CABECERA PREMIUM */
+/* CABECERA PREMIUM MODIFICADA */
 .app-bar { 
     padding: 10px 16px; 
     display: flex; 
@@ -57,8 +68,11 @@ html, body {
     justify-content: space-between; 
     border-bottom: 1px solid var(--border-subtle); 
     gap: 8px; 
-    flex-wrap: nowrap; /* Forza a que todo esté en una sola línea */
+    flex-wrap: nowrap; 
     background: var(--surface-card);
+    /* Aseguramos que nada se salga por los lados */
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
 }
 
 .app-title { 
@@ -69,7 +83,11 @@ html, body {
     align-items: center; 
     gap: 8px; 
     letter-spacing: -0.01em; 
-    white-space: nowrap; /* Evita que el texto se rompa en dos líneas */
+    white-space: nowrap; 
+    overflow: hidden; /* Evita que el texto empuje los botones */
+    text-overflow: ellipsis;
+    flex-shrink: 1; /* Permite que el título se encoja si es necesario */
+    min-width: 0;
 }
 
 .app-title svg { 
@@ -83,7 +101,6 @@ html, body {
     flex-shrink: 0; 
 }
 
-/* Etiqueta de versión estilo píldora al lado del título */
 .version-badge { 
     font-size: 10px; 
     background: rgba(88,166,255,0.12); 
@@ -93,16 +110,18 @@ html, body {
     font-weight: 600; 
     border: 1px solid rgba(88,166,255,0.3); 
     margin-left: 4px;
+    white-space: nowrap;
 }
 
+/* MODIFICADO: Ajustes para que no se desborde */
 .header-actions { 
     display: flex; 
     align-items: center; 
-    gap: 8px; 
+    gap: 6px; /* Reducido un poco para dar espacio */
     flex-shrink: 0; /* Evita que los botones se aplasten */
+    margin-left: auto; /* Empuja los botones a la derecha */
 }
 
-/* Botones redondos un poco más estilizados */
 .btn-icon { 
     background: var(--surface-elevated); 
     border: 1px solid var(--border-subtle); 
@@ -115,16 +134,16 @@ html, body {
     justify-content: center; 
     cursor: pointer; 
     transition: all .2s; 
+    flex-shrink: 0; /* No se aplastan */
 }
 .btn-icon:hover { background: var(--surface-card); color: var(--text-primary); }
 .btn-icon svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-/* Botón de contacto un poco más pulido */
 .btn-info-about { 
     background: rgba(88,166,255,0.12); 
     color: var(--info); 
     border: 1px solid rgba(88,166,255,0.3); 
-    padding: 0 14px; 
+    padding: 0 12px; /* Reducido un poco */
     height: 34px;
     border-radius: 20px; 
     font-size: 12px; 
@@ -135,9 +154,16 @@ html, body {
     gap: 6px; 
     transition: all .2s; 
     font-family: 'Inter', sans-serif; 
+    flex-shrink: 0; /* No se aplasta */
 }
 .btn-info-about:hover { background: rgba(88,166,255,0.2); }
 .btn-info-about svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+/* AÑADIDO: Ocultar el texto del botón Contacto en pantallas pequeñas */
+@media (max-width: 480px) {
+    .contact-text { display: none; } /* Solo muestra el ícono */
+    .btn-info-about { padding: 0 10px; width: 34px; justify-content: center; }
+}
 
 .offline-banner { background: #7d4a00; color: #fff; padding: 7px 16px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; font-weight: 500; }
 
@@ -246,28 +272,30 @@ body.light-theme #about-screen, body.light-theme #history-screen { background: #
     .total-bs, .total-usd { color: #000 !important; font-weight: 700; }
 }
 
+/* RESPONSIVE AJUSTES FINOS */
 @media (max-width: 380px) {
     .app-title span { font-size: 13px; }
     .btn-info-about { padding: 0 10px; font-size: 11px; }
     .tab-btn { font-size: 11px; padding: 9px 4px; }
+    .version-badge { font-size: 9px; padding: 1px 6px; }
 }
 
 /* ESTILOS DEL TUTORIAL */
 #tutorial-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Oscurece el fondo */
+    background: rgba(0, 0, 0, 0.7); 
     z-index: 9999;
     display: none; 
-    pointer-events: none; /* Permite hacer clic en los elementos resaltados si es necesario */
+    pointer-events: none; 
 }
 .tutorial-tooltip {
     position: absolute;
     background: var(--surface-elevated); border: 2px solid var(--info);
     padding: 16px; border-radius: var(--radius-lg); width: 260px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.9); text-align: center;
-    z-index: 10002; /* Por encima del foco */
+    z-index: 10002; 
     transition: all 0.3s ease;
-    pointer-events: auto; /* Permite hacer clic en los botones del globo */
+    pointer-events: auto; 
 }
 .tutorial-tooltip h3 { color: var(--info); font-size: 15px; margin-bottom: 6px; font-weight: 700; }
 .tutorial-tooltip p { font-size: 12px; color: var(--text-primary); line-height: 1.4; margin-bottom: 12px; }
@@ -282,7 +310,7 @@ body.light-theme #about-screen, body.light-theme #history-screen { background: #
 /* Efecto de foco (Recorta un hueco transparente en la capa oscura) */
 .tutorial-focus {
     position: relative; 
-    z-index: 10000 !important; /* Lo pone por encima del fondo oscuro */
+    z-index: 10000 !important; 
     box-shadow: 0 0 0 4px var(--info), 0 0 40px 10px rgba(88,166,255,0.4) !important;
     background: var(--surface-card) !important; 
     border-radius: var(--radius-md);
