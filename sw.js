@@ -1,5 +1,5 @@
-/* Calculadora Comercial VE · Grupo FERSE · SW v4.3 */
-const CACHE_NAME = 'calcve-v4.3'; // <--- CAMBIADO A v4.3
+/* Calculadora Comercial VE · Grupo FERSE · SW v4.4 */
+const CACHE_NAME = 'calcve-v4.4'; // <--- CAMBIADO A v4.4
 const CORE_ASSETS = [
   './',
   './index.html',
