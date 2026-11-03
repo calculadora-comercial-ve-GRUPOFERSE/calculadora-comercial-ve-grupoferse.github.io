@@ -23,7 +23,6 @@
     --radius-xl: 20px;
 }
 
-/* TEMA CLARO */
 body.light-theme {
     --surface-dark: #f4f6f9;
     --surface-card: #ffffff;
@@ -47,125 +46,27 @@ html, body {
 
 .phone-container { min-height: 100vh; width: 100%; display: flex; flex-direction: column; padding-bottom: 16px; background: var(--surface-dark); }
 
-/* CABECERA CON SAFE AREA (NOTCH) */
-.fixed-header { 
-    flex-shrink: 0; 
-    background: var(--surface-card); 
-    backdrop-filter: blur(12px); 
-    z-index: 10; 
-    box-shadow: var(--shadow-md); 
-    position: sticky; 
-    top: 0; 
-    border-bottom: 1px solid var(--border-subtle); 
-    padding-top: env(safe-area-inset-top); 
-}
+.fixed-header { flex-shrink: 0; background: var(--surface-card); backdrop-filter: blur(12px); z-index: 10; box-shadow: var(--shadow-md); position: sticky; top: 0; border-bottom: 1px solid var(--border-subtle); padding-top: env(safe-area-inset-top); }
+.app-bar { padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); gap: 8px; flex-wrap: nowrap; background: var(--surface-card); padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+.app-title { font-size: 15px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 8px; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 1; min-width: 0; }
+.app-title svg { width: 22px; height: 22px; stroke: var(--info); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.version-badge { font-size: 10px; background: rgba(88,166,255,0.12); color: var(--info); padding: 2px 8px; border-radius: 12px; font-weight: 600; border: 1px solid rgba(88,166,255,0.3); margin-left: 4px; white-space: nowrap; }
+.header-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; margin-left: auto; }
 
-/* CABECERA PREMIUM */
-.app-bar { 
-    padding: 10px 16px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: space-between; 
-    border-bottom: 1px solid var(--border-subtle); 
-    gap: 8px; 
-    flex-wrap: nowrap; 
-    background: var(--surface-card);
-    padding-left: max(16px, env(safe-area-inset-left));
-    padding-right: max(16px, env(safe-area-inset-right));
-}
-
-.app-title { 
-    font-size: 15px; 
-    font-weight: 600; 
-    color: var(--text-primary); 
-    display: flex; 
-    align-items: center; 
-    gap: 8px; 
-    letter-spacing: -0.01em; 
-    white-space: nowrap; 
-    overflow: hidden; 
-    text-overflow: ellipsis;
-    flex-shrink: 1; 
-    min-width: 0;
-}
-
-.app-title svg { 
-    width: 22px; 
-    height: 22px; 
-    stroke: var(--info); 
-    fill: none; 
-    stroke-width: 2; 
-    stroke-linecap: round; 
-    stroke-linejoin: round; 
-    flex-shrink: 0; 
-}
-
-.version-badge { 
-    font-size: 10px; 
-    background: rgba(88,166,255,0.12); 
-    color: var(--info); 
-    padding: 2px 8px; 
-    border-radius: 12px; 
-    font-weight: 600; 
-    border: 1px solid rgba(88,166,255,0.3); 
-    margin-left: 4px;
-    white-space: nowrap;
-}
-
-.header-actions { 
-    display: flex; 
-    align-items: center; 
-    gap: 6px; 
-    flex-shrink: 0; 
-    margin-left: auto; 
-}
-
-.btn-icon { 
-    background: var(--surface-elevated); 
-    border: 1px solid var(--border-subtle); 
-    color: var(--text-secondary); 
-    width: 34px; 
-    height: 34px; 
-    border-radius: 50%; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    cursor: pointer; 
-    transition: all .2s; 
-    flex-shrink: 0; 
-}
+.btn-icon { background: var(--surface-elevated); border: 1px solid var(--border-subtle); color: var(--text-secondary); width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all .2s; flex-shrink: 0; }
 .btn-icon:hover { background: var(--surface-card); color: var(--text-primary); }
 .btn-icon svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-/* BOTÓN DE CONTACTO MEJORADO */
-.btn-info-about { 
-    background: rgba(88,166,255,0.12); 
-    color: var(--info); 
-    border: 1px solid rgba(88,166,255,0.3); 
-    padding: 0 16px; 
-    height: 34px;
-    border-radius: 20px; 
-    font-size: 12px; 
-    font-weight: 600; 
-    cursor: pointer; 
-    display: flex; 
-    align-items: center; 
-    gap: 8px; 
-    transition: all .2s; 
-    font-family: 'Inter', sans-serif; 
-    flex-shrink: 0; 
-}
+.btn-info-about { background: rgba(88,166,255,0.12); color: var(--info); border: 1px solid rgba(88,166,255,0.3); padding: 0 16px; height: 34px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all .2s; font-family: 'Inter', sans-serif; flex-shrink: 0; }
 .btn-info-about:hover { background: rgba(88,166,255,0.2); }
 .btn-info-about svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
 
-/* OCULTAR TEXTO DE CONTACTO EN CELULARES */
 @media (max-width: 480px) {
     .contact-text { display: none; } 
     .btn-info-about { padding: 0 10px; width: 34px; justify-content: center; }
 }
 
 .offline-banner { background: #7d4a00; color: #fff; padding: 7px 16px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; font-weight: 500; }
-
 .nav-tabs { display: flex; background: var(--surface-card); padding: 8px 12px; gap: 8px; border-bottom: 1px solid var(--border-subtle); }
 .tab-btn { flex: 1; background: var(--surface-elevated); border: 1px solid var(--border-subtle); color: var(--text-secondary); padding: 10px 8px; border-radius: var(--radius-md); font-size: 12px; font-weight: 500; cursor: pointer; text-align: center; transition: all .25s ease; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; gap: 6px; }
 .tab-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
@@ -202,20 +103,20 @@ input:focus, select:focus { border-color: var(--info); box-shadow: 0 0 0 3px rgb
 input:invalid:not(:placeholder-shown) { border-color: var(--danger); }
 select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238b949e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px; }
 
-/* OCULTAR FLECHITAS DE INPUTS NUMÉRICOS */
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none; 
-    margin: 0; 
-}
-input[type=number] { 
-    -moz-appearance: textfield; 
-}
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; }
 
 .highlight-box { background: rgba(88,166,255,.06); padding: 12px; border-radius: var(--radius-md); border: 1px solid rgba(88,166,255,.2); }
-
 .row { display: flex; gap: 12px; }
 .row .form-group { flex: 1; min-width: 0; }
+
+.personalization-card { background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); margin-bottom: 16px; overflow: hidden; box-shadow: var(--shadow-sm); }
+.personalization-card summary { padding: 12px 16px; cursor: pointer; font-size: 12px; font-weight: 600; color: var(--info); display: flex; align-items: center; gap: 8px; list-style: none; background: rgba(88,166,255,0.05); transition: background 0.2s; }
+.personalization-card summary::-webkit-details-marker { display: none; }
+.personalization-card summary:hover { background: rgba(88,166,255,0.1); }
+.personalization-card summary::after { content: '+'; margin-left: auto; font-size: 16px; font-weight: 700; transition: transform 0.2s; }
+.personalization-card[open] summary::after { content: '−'; }
+.personalization-content { padding: 16px; border-top: 1px solid var(--border-subtle); background: var(--surface-elevated); }
 
 .results-card { background: var(--surface-card); border-radius: var(--radius-lg); padding: 16px; margin-top: 14px; border: 1px solid var(--border-subtle); box-shadow: var(--shadow-sm); }
 .results-title { font-size: 11px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .6px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; gap: 6px; }
@@ -233,14 +134,28 @@ input[type=number] {
 .btn-action:hover { background: var(--surface-card); border-color: var(--info); }
 .btn-action svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
 
+/* NUEVO: BANNER FAQ */
+.faq-banner { display: flex; align-items: center; gap: 12px; background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 16px; margin-top: 20px; cursor: pointer; transition: all 0.2s; box-shadow: var(--shadow-sm); }
+.faq-banner:hover { border-color: var(--info); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.faq-banner-icon { background: rgba(88,166,255,0.1); color: var(--info); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.faq-banner-icon svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; }
+.faq-banner-text { display: flex; flex-direction: column; text-align: left; }
+.faq-banner-text strong { font-size: 14px; color: var(--text-primary); }
+.faq-banner-text span { font-size: 12px; color: var(--text-secondary); }
+
 .ad-container { margin-top: 16px; text-align: center; }
 .trust-signature { margin-top: 24px; margin-bottom: 12px; text-align: center; padding: 16px 12px; border-top: 1px solid var(--border-subtle); }
 .trust-title { font-size: 11px; font-weight: 700; color: var(--info); letter-spacing: .6px; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 6px; }
 .trust-title svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
 .trust-subtitle { font-size: 10px; color: var(--text-tertiary); margin-top: 4px; }
 
-#about-screen, #history-screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--surface-card); color: var(--text-primary); z-index: 1000; overflow-y: auto; padding: 24px 16px; box-sizing: border-box; }
-body.light-theme #about-screen, body.light-theme #history-screen { background: #fff; }
+.legal-links { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 11px; }
+.legal-links a { color: var(--text-tertiary); text-decoration: none; transition: color 0.2s; }
+.legal-links a:hover { color: var(--info); text-decoration: underline; }
+.legal-links span { color: var(--border-subtle); }
+
+.overlay-screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--surface-card); color: var(--text-primary); z-index: 1000; overflow-y: auto; padding: 24px 16px; box-sizing: border-box; }
+body.light-theme .overlay-screen { background: #fff; }
 .about-content { max-width: 500px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; align-items: center; }
 .about-logo { width: 160px; height: auto; margin-bottom: 16px; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,.12); }
 .about-title { font-size: 22px; font-weight: 700; color: var(--info); margin-bottom: 4px; letter-spacing: -.02em; }
@@ -265,11 +180,31 @@ body.light-theme #about-screen, body.light-theme #history-screen { background: #
 .history-item .hi-line { display: flex; justify-content: space-between; color: var(--text-secondary); margin-bottom: 2px; }
 .history-item .hi-total { color: var(--success); font-weight: 700; margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--border-subtle); display: flex; justify-content: space-between; }
 
+/* ESTILOS DEL ACORDEÓN FAQ */
+.faq-list { width: 100%; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.faq-item { background: var(--surface-elevated); border: 1px solid var(--border-subtle); border-radius: 12px; overflow: hidden; text-align: left; }
+.faq-item summary { padding: 14px 16px; font-size: 14px; font-weight: 600; color: var(--text-primary); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '+'; font-size: 18px; color: var(--info); font-weight: bold; }
+.faq-item[open] summary::after { content: '−'; }
+.faq-item[open] summary { border-bottom: 1px solid var(--border-subtle); background: rgba(88,166,255,0.05); }
+.faq-answer { padding: 16px; font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+.faq-answer p { margin-bottom: 8px; }
+.faq-answer p:last-child { margin-bottom: 0; }
+.faq-answer strong { color: var(--text-primary); }
+
+/* ESTILOS PÁGINAS LEGALES */
+.legal-content { text-align: left; }
+.legal-content .about-title { text-align: center; margin-bottom: 8px; }
+.legal-content .about-subtitle { text-align: center; margin-bottom: 24px; }
+.legal-text h3 { font-size: 15px; color: var(--info); margin-top: 20px; margin-bottom: 8px; }
+.legal-text p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 12px; text-align: justify; }
+.legal-text strong { color: var(--text-primary); }
+
 #update-banner { display: none; position: fixed; bottom: 16px; left: 16px; right: 16px; background: var(--primary-gradient); color: #fff; padding: 14px 16px; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); z-index: 100; align-items: center; justify-content: space-between; border: 1px solid rgba(255,255,255,.15); }
 #update-banner span { font-size: 13px; font-weight: 500; }
 #update-banner button { background: var(--success); color: #fff; border: none; padding: 7px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; }
 
-/* RESPONSIVE AJUSTES FINOS (iPhone y Android) */
 @media (max-width: 420px) {
     .app-title span { font-size: 13px; }
     .btn-icon, .btn-info-about { width: 30px; height: 30px; padding: 0; justify-content: center; }
@@ -280,77 +215,65 @@ body.light-theme #about-screen, body.light-theme #history-screen { background: #
 }
 
 /* ESTILOS DEL TUTORIAL */
-#tutorial-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.7); 
-    z-index: 9999;
-    display: none; 
-    pointer-events: none; 
-}
-.tutorial-tooltip {
-    position: absolute;
-    background: var(--surface-elevated); border: 2px solid var(--info);
-    padding: 16px; border-radius: var(--radius-lg); width: 260px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.9); text-align: center;
-    z-index: 10002; 
-    transition: all 0.3s ease;
-    pointer-events: auto; 
-}
+#tutorial-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 9999; display: none; pointer-events: none; }
+.tutorial-tooltip { position: absolute; background: var(--surface-elevated); border: 2px solid var(--info); padding: 16px; border-radius: var(--radius-lg); width: 260px; box-shadow: 0 10px 30px rgba(0,0,0,0.9); text-align: center; z-index: 10002; transition: all 0.3s ease; pointer-events: auto; }
 .tutorial-tooltip h3 { color: var(--info); font-size: 15px; margin-bottom: 6px; font-weight: 700; }
 .tutorial-tooltip p { font-size: 12px; color: var(--text-primary); line-height: 1.4; margin-bottom: 12px; }
 .tutorial-buttons { display: flex; justify-content: space-between; gap: 8px; }
-.tutorial-buttons button {
-    padding: 8px 12px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 700;
-    cursor: pointer; border: none; flex: 1; font-family: 'Inter', sans-serif;
-}
+.tutorial-buttons button { padding: 8px 12px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 700; cursor: pointer; border: none; flex: 1; font-family: 'Inter', sans-serif; }
 #tut-skip { background: var(--surface-card); color: var(--text-secondary); border: 1px solid var(--border-subtle); }
 #tut-next { background: var(--primary-gradient); color: #fff; }
+.tutorial-focus { position: relative; z-index: 10000 !important; box-shadow: 0 0 0 4px var(--info), 0 0 40px 10px rgba(88,166,255,0.4) !important; background: var(--surface-card) !important; border-radius: var(--radius-md); pointer-events: auto; }
 
-/* Efecto de foco (Recorta un hueco transparente en la capa oscura) */
-.tutorial-focus {
-    position: relative; 
-    z-index: 10000 !important; 
-    box-shadow: 0 0 0 4px var(--info), 0 0 40px 10px rgba(88,166,255,0.4) !important;
-    background: var(--surface-card) !important; 
-    border-radius: var(--radius-md);
-    pointer-events: auto;
+/* ============================================================ */
+/* DISEÑO DEL CONTENEDOR PDF (OCULTO EN PANTALLA)               */
+/* ============================================================ */
+#pdf-export-container { display: none; background: #ffffff; color: #000000; padding: 40px; font-family: Arial, sans-serif; width: 100%; max-width: 800px; margin: 0 auto; position: relative; overflow: hidden; box-sizing: border-box; }
+.pdf-watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.08; width: 60%; pointer-events: none; z-index: 0; }
+.pdf-header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #0f4c81; padding-bottom: 20px; }
+.pdf-logo { max-width: 100px; margin-bottom: 10px; }
+.pdf-header h2 { color: #0f4c81; margin: 0; font-size: 24px; }
+.pdf-header p { margin: 5px 0 0 0; font-size: 14px; color: #555; }
+.pdf-custom-box { margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-left: 4px solid #0f4c81; border-radius: 4px; display: none; }
+.pdf-custom-box p { margin: 0 0 5px 0; font-size: 14px; }
+.pdf-custom-box p:last-child { margin: 0; }
+.pdf-content-table { margin-bottom: 40px; font-size: 15px; line-height: 1.8; }
+.pdf-footer { text-align: center; font-size: 12px; color: #777; margin-top: 60px; border-top: 1px solid #ccc; padding-top: 15px; }
+
+/* ============================================================ */
+/* REGLAS ESTRICTAS DE IMPRESIÓN (CENTRADO PERFECTO)            */
+/* ============================================================ */
+@page {
+    margin: 0; /* Elimina la ruta y fecha del navegador */
+    size: auto;
 }
 
-/* ============================================================ */
-/* NUEVO: REGLAS ESTRICTAS PARA LA IMPRESIÓN / PDF EN BLANCO    */
-/* ============================================================ */
 @media print {
-    /* Ocultar absolutamente todo el body por defecto */
-    body * {
-        visibility: hidden;
+    html, body { 
+        margin: 0 !important; 
+        padding: 0 !important; 
+        background: #ffffff !important; 
+        height: auto !important; 
+        overflow: visible !important; 
     }
     
-    /* Mostrar solo el contenedor de exportación y sus hijos */
-    #pdf-export-container, #pdf-export-container * {
-        visibility: visible;
-    }
+    /* Ocultar la app web */
+    .phone-container { display: none !important; }
     
-    /* Posicionar el contenedor en la parte superior izquierda para que no queden espacios en blanco */
+    /* Configurar el PDF para que se centre en la hoja */
     #pdf-export-container {
-        position: absolute;
-        left: 0;
-        top: 0;
-        display: block !important; /* Forzar visualización */
-        width: 100%;
-        padding: 20px;
-        box-sizing: border-box;
+        display: block !important;
+        position: relative !important; /* Quitamos el absolute para que fluya natural */
+        width: 100% !important;
+        max-width: 800px !important; /* Le damos un ancho máximo de hoja */
+        margin: 0 auto !important; /* Esto es lo que lo centra */
+        padding: 40px !important; /* Márgenes internos */
+        border: none !important;
+        box-sizing: border-box !important;
     }
 
-    /* Asegurar que los colores del logo y textos se impriman */
-    #pdf-export-container img {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-    }
-    
-    /* Eliminar márgenes del body al imprimir */
-    html, body {
-        margin: 0;
-        padding: 0;
-        background: #ffffff !important;
+    .pdf-watermark, .pdf-header h2, .pdf-custom-box {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
     }
 }

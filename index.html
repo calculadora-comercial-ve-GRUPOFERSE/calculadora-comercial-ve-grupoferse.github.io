@@ -2,11 +2,11 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <!-- MODIFICADO: Añadido viewport-fit=cover para respetar el notch -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://*.google-analytics.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://ve.dolarapi.com https://*.google-analytics.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google; frame-src https://googleads.g.doubleclick.net https://*.googlesyndication.com https://*.doubleclick.net https://*.adtrafficquality.google https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    
     <title>Calculadora Comercial VE · Grupo FERSE</title>
-    <meta name="description" content="Calculadora comercial y fiscal con tasa BCV, IVA, IGTF y empaques. Funciona offline. Grupo FERSE.">
+    <meta name="description" content="Calculadora comercial y fiscal gratuita. Calcula IVA, IGTF, retenciones, tasa BCV, tasa manual y ganancias de empaques. Personaliza tus cotizaciones en PDF.">
     <meta name="theme-color" content="#0f4c81">
     <link rel="manifest" href="https://calculadora-comercial-ve-grupoferse.github.io/manifest.json">
     <link rel="icon" href="https://calculadora-comercial-ve-grupoferse.github.io/icon.png" type="image/png">
@@ -32,7 +32,6 @@
 
 <div class="phone-container">
     <div class="fixed-header">
-        <!-- CABECERA CORREGIDA -->
         <div class="app-bar">
             <div class="app-title">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
@@ -40,18 +39,21 @@
             </div>
             
             <div class="header-actions">
-                <button class="btn-icon" id="btn-theme" onclick="alternarTema()" aria-label="Cambiar tema claro/oscuro" title="Cambiar tema">
+                <!-- NUEVO BOTÓN FAQ -->
+                <button class="btn-icon" onclick="openFaq()" aria-label="Preguntas Frecuentes" title="Preguntas Frecuentes">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </button>
+                <button class="btn-icon" id="btn-theme" onclick="alternarTema()" aria-label="Cambiar tema" title="Cambiar tema">
                     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
                 </button>
-                <button class="btn-icon" id="btn-history" onclick="abrirHistorial()" aria-label="Ver historial de cálculos" title="Historial">
+                <button class="btn-icon" id="btn-history" onclick="abrirHistorial()" aria-label="Ver historial" title="Historial">
                     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 </button>
                 <button class="btn-info-about" onclick="openAbout()">
                     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
                     <span class="contact-text">Contacto</span>
                 </button>
-                <!-- Versión actualizada a v4.0 -->
-                <span class="version-badge">v4.0</span>
+                <span class="version-badge">v4.3</span>
             </div>
         </div>
 
@@ -89,6 +91,30 @@
         </section>
 
         <div id="sync-error" class="error-box" role="alert" style="display:none;"></div>
+
+        <!-- DATOS PARA PERSONALIZAR -->
+        <details class="personalization-card">
+            <summary>
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                Datos para personalizar (Opcional)
+            </summary>
+            <div class="personalization-content">
+                <div class="form-group">
+                    <label for="custom-name">Nombre / Empresa</label>
+                    <input type="text" id="custom-name" placeholder="Ej: Panadería El Trigal" oninput="calcularTodo()">
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="custom-rif">RIF / C.I.</label>
+                        <input type="text" id="custom-rif" placeholder="Ej: J-123456789" oninput="calcularTodo()">
+                    </div>
+                    <div class="form-group">
+                        <label for="custom-address">Dirección</label>
+                        <input type="text" id="custom-address" placeholder="Ej: Av. Principal..." oninput="calcularTodo()">
+                    </div>
+                </div>
+            </div>
+        </details>
 
         <!-- TASA BASE -->
         <div class="form-group">
@@ -269,29 +295,16 @@
             </div>
         </div>
 
-        <!-- ========================================== -->
-        <!-- NUEVO: CONTENEDOR EXCLUSIVO PARA EL PDF    -->
-        <!-- ========================================== -->
-        <div id="pdf-export-container" style="display: none; background: #ffffff; color: #000000; padding: 30px; font-family: Arial, sans-serif; width: 100%; max-width: 800px; margin: 0 auto;">
-            <!-- Encabezado con Logo -->
-            <div style="text-align: center; margin-bottom: 20px; border-bottom: 2px solid #0f4c81; padding-bottom: 15px;">
-                <img src="https://calculadora-comercial-ve-grupoferse.github.io/logogrupoferse.png" alt="Grupo FERSE" style="max-width: 120px; margin-bottom: 10px;">
-                <h2 style="color: #0f4c81; margin: 0; font-size: 22px;">Calculadora Comercial VE</h2>
-                <p style="margin: 5px 0 0 0; font-size: 14px; color: #555;">Desarrollado por Grupo FERSE</p>
+        <!-- BANNER DE PREGUNTAS FRECUENTES (NUEVO) -->
+        <div class="faq-banner" onclick="openFaq()">
+            <div class="faq-banner-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             </div>
-
-            <!-- Contenido dinámico (se llena con JS) -->
-            <div id="pdf-content-data" style="margin-bottom: 30px; font-size: 14px; line-height: 1.6;">
-                <!-- Aquí se inyectará el resumen -->
-            </div>
-
-            <!-- Pie de página -->
-            <div style="text-align: center; font-size: 12px; color: #777; margin-top: 40px; border-top: 1px solid #ccc; padding-top: 15px;">
-                <p>Este documento fue generado automáticamente por la Calculadora Comercial VE.</p>
-                <p>Visita nuestra herramienta gratuita en: <strong>https://calculadora-comercial-ve-grupoferse.github.io/</strong></p>
+            <div class="faq-banner-text">
+                <strong>¿Tienes dudas?</strong>
+                <span>Lee nuestras Preguntas Frecuentes</span>
             </div>
         </div>
-        <!-- ========================================== -->
 
         <div class="ad-container">
             <ins class="adsbygoogle"
@@ -311,11 +324,113 @@
                 Desarrollado por Grupo FERSE
             </div>
             <div class="trust-subtitle">11 años de experiencia brindando soluciones comerciales.</div>
+            
+            <!-- ENLACES LEGALES -->
+            <div class="legal-links">
+                <a href="#" onclick="openPrivacy(); return false;">Política de Privacidad</a>
+                <span>•</span>
+                <a href="#" onclick="openTerms(); return false;">Términos y Condiciones</a>
+            </div>
         </div>
     </main>
 
+    <!-- PANTALLA FAQ (ACORDEÓN) -->
+    <div id="faq-screen" class="overlay-screen">
+        <div class="about-content">
+            <h2 class="about-title">Preguntas Frecuentes y Guías</h2>
+            <p class="about-subtitle">Aprende a usar la calculadora y domina los cálculos fiscales.</p>
+            
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>¿Cómo usar la Calculadora Comercial VE?</summary>
+                    <div class="faq-answer">
+                        <p>Para empezar, simplemente sincroniza la <strong>tasa oficial del BCV</strong> y selecciona si deseas calcular con Dólares o Euros. Si manejas una tasa distinta, puedes usar el modo Manual.</p>
+                        <p>En la pestaña de <strong>Calc. Fiscal</strong>, ingresa el monto base en dólares. Si es una factura formal, selecciona "Factura Fiscal" y la herramienta calculará el IVA y retenciones exigidas por el SENIAT.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Qué es el IVA y cómo se calcula?</summary>
+                    <div class="faq-answer">
+                        <p>El Impuesto al Valor Agregado (IVA) se aplica al consumo de bienes y servicios. En Venezuela, la alícuota general es del 16%, aunque existen del 8% (canasta básica) y 31% (lujo).</p>
+                        <p>Nuestra calculadora aplica la fórmula: <em>(Monto Neto en Dólares × Porcentaje de IVA) × Tasa de Cambio</em>.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Cómo calcular la Retención de IVA?</summary>
+                    <div class="faq-answer">
+                        <p>La retención es un descuento del IVA total que el comprador (agente de retención) entera al SENIAT. Si eres Contribuyente Especial, normalmente retendrás el 75% del IVA facturado, pagándole al proveedor solo el 25% restante del impuesto.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Diferencia entre Tasa BCV y Tasa Manual</summary>
+                    <div class="faq-answer">
+                        <p>Puedes calcular la <strong>Base Imponible</strong> usando una tasa manual (ej. venta a precio fijo en bolívares), pero calcular el <strong>IVA y la Retención</strong> a la tasa oficial del BCV. Nuestra herramienta hace esta conversión automáticamente.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Guía para el Módulo de Empaques y Ganancias</summary>
+                    <div class="faq-answer">
+                        <p>Si eres distribuidor, esta pestaña es para ti. Ingresa el costo de la caja completa, cuántos paquetes trae y cuántas bolsas hay en cada paquete. La calculadora te mostrará el <strong>costo unitario</strong>. Al ingresar tu precio de venta, sabrás tu <strong>ganancia neta por bolsa</strong> y el margen total del lote.</p>
+                    </div>
+                </details>
+            </div>
+            <button class="btn-back-calc" onclick="closeFaq()" style="margin-top: 20px;">Volver a la Calculadora</button>
+        </div>
+    </div>
+
+    <!-- PANTALLA POLÍTICA DE PRIVACIDAD -->
+    <div id="privacy-screen" class="overlay-screen">
+        <div class="about-content legal-content">
+            <h2 class="about-title">Política de Privacidad</h2>
+            <p class="about-subtitle">Última actualización: Octubre 2025</p>
+            
+            <div class="legal-text">
+                <h3>1. Información que recopilamos</h3>
+                <p>La Calculadora Comercial VE es una herramienta gratuita. <strong>No recopilamos, almacenamos ni compartimos información personal identificable</strong> (como nombres, correos o RIF) en nuestros servidores. Los datos que ingresas en el panel "Datos para personalizar" se guardan únicamente en la memoria local (LocalStorage) de tu propio navegador para tu comodidad.</p>
+
+                <h3>2. Uso de Cookies y Publicidad (Google AdSense)</h3>
+                <p>Este sitio web utiliza Google AdSense para mostrar anuncios. Google, como proveedor externo, utiliza cookies para publicar anuncios basados en las visitas anteriores del usuario a este sitio web o a otros sitios de Internet. Los usuarios pueden inhabilitar el uso de la cookie de publicidad personalizada visitando la página de Configuración de anuncios de Google.</p>
+
+                <h3>3. Almacenamiento Local</h3>
+                <p>Utilizamos la tecnología LocalStorage de tu navegador para guardar el historial de tus cálculos y la última tasa sincronizada. Esto nos permite que la aplicación funcione de manera offline. Puedes borrar estos datos en cualquier momento desde el botón "Borrar historial" o limpiando la caché de tu navegador.</p>
+
+                <h3>4. Contacto</h3>
+                <p>Si tienes preguntas sobre esta política, puedes contactarnos en: <strong>grupofersevenezuela@gmail.com</strong>.</p>
+            </div>
+            <button class="btn-back-calc" onclick="closePrivacy()" style="margin-top: 20px;">Volver a la Calculadora</button>
+        </div>
+    </div>
+
+    <!-- PANTALLA TÉRMINOS Y CONDICIONES -->
+    <div id="terms-screen" class="overlay-screen">
+        <div class="about-content legal-content">
+            <h2 class="about-title">Términos y Condiciones</h2>
+            <p class="about-subtitle">Última actualización: Octubre 2025</p>
+            
+            <div class="legal-text">
+                <h3>1. Aceptación de los Términos</h3>
+                <p>Al acceder y utilizar la Calculadora Comercial VE, aceptas estar sujeto a estos términos y condiciones. Si no estás de acuerdo con alguna parte de estos términos, por favor no utilices la herramienta.</p>
+
+                <h3>2. Propósito Informativo</h3>
+                <p>Esta calculadora es una herramienta de apoyo para el cálculo de operaciones comerciales, conversión de divisas, IVA, IGTF y márgenes de ganancia. Los resultados generados son estimaciones basadas en los datos ingresados por el usuario y las tasas oficiales (BCV) o manuales.</p>
+                <p><strong>No nos hacemos responsables por errores financieros, fiscales o legales</strong> derivados del uso de los resultados de esta calculadora. Para declaraciones formales ante el SENIAT, siempre recomendamos consultar con un contador público certificado.</p>
+
+                <h3>3. Propiedad Intelectual</h3>
+                <p>El código fuente, diseño, logotipos y contenido de la Calculadora Comercial VE son propiedad de Grupo FERSE. Queda prohibida la reproducción total o parcial, la copia del código o la distribución de esta herramienta sin autorización previa por escrito.</p>
+
+                <h3>4. Modificaciones</h3>
+                <p>Nos reservamos el derecho de modificar o reemplazar estos Términos en cualquier momento. El uso continuado de la herramienta después de cualquier cambio constituirá la aceptación de los nuevos términos.</p>
+            </div>
+            <button class="btn-back-calc" onclick="closeTerms()" style="margin-top: 20px;">Volver a la Calculadora</button>
+        </div>
+    </div>
+
     <!-- PANTALLA CONTACTO -->
-    <div id="about-screen" style="display: none;">
+    <div id="about-screen" class="overlay-screen">
         <div class="about-content">
             <img src="https://calculadora-comercial-ve-grupoferse.github.io/logogrupoferse.png" alt="Logo Grupo FERSE" class="about-logo">
             <h2 class="about-title">Grupo FERSE</h2>
@@ -344,7 +459,7 @@
     </div>
 
     <!-- PANTALLA HISTORIAL -->
-    <div id="history-screen" style="display: none;">
+    <div id="history-screen" class="overlay-screen">
         <div class="about-content">
             <h2 class="about-title">Historial de Cálculos</h2>
             <p class="about-subtitle">Últimos 10 cálculos guardados en este dispositivo.</p>
@@ -368,6 +483,39 @@
                 <button type="button" id="tut-skip" onclick="saltarTutorial()">Omitir</button>
                 <button type="button" id="tut-next" onclick="siguientePaso()">Siguiente</button>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================== -->
+<!-- CONTENEDOR EXCLUSIVO PARA EL PDF (MOVIDO AL FINAL DEL BODY PARA EVITAR HOJAS EN BLANCO) -->
+<!-- ========================================== -->
+<div id="pdf-export-container">
+    <!-- MARCA DE AGUA -->
+    <img src="https://calculadora-comercial-ve-grupoferse.github.io/logogrupoferse.png" alt="Watermark" class="pdf-watermark">
+    
+    <div style="position: relative; z-index: 1;">
+        <!-- Encabezado -->
+        <div class="pdf-header">
+            <img src="https://calculadora-comercial-ve-grupoferse.github.io/logogrupoferse.png" alt="Grupo FERSE" class="pdf-logo">
+            <h2>Calculadora Comercial VE</h2>
+            <p>Desarrollado por Grupo FERSE</p>
+        </div>
+
+        <!-- DATOS PERSONALIZADOS -->
+        <div id="pdf-custom-data" class="pdf-custom-box">
+            <p><strong>Empresa / Persona:</strong> <span id="pdf-custom-name"></span></p>
+            <p><strong>RIF / C.I.:</strong> <span id="pdf-custom-rif"></span></p>
+            <p><strong>Dirección:</strong> <span id="pdf-custom-address"></span></p>
+        </div>
+
+        <!-- CONTENIDO DEL PDF -->
+        <div id="pdf-content-data" class="pdf-content-table"></div>
+
+        <!-- Pie de página -->
+        <div class="pdf-footer">
+            <p>Este documento fue generado automáticamente por la Calculadora Comercial VE.</p>
+            <p>Visita nuestra herramienta gratuita en: <strong>https://calculadora-comercial-ve-grupoferse.github.io/</strong></p>
         </div>
     </div>
 </div>
